@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private GameObject weapon;
+    [SerializeField] private Rigidbody2D playerRb;
 
     private SpriteRenderer sprite;
 
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        playerRb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
     }
 
@@ -24,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(moveVec * moveSpeed * Time.deltaTime);
+        playerRb.velocity = (moveVec * moveSpeed * Time.deltaTime);
 
         if (moveVec.x > 0)
         {

@@ -6,6 +6,7 @@ public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
 
+    private Rigidbody2D enemyRb;
     private bool followsPlayer;
     private bool randomChosen;
     private float timePassed;
@@ -14,7 +15,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Awake()
     {
-
+        enemyRb = GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -36,12 +37,12 @@ public class EnemyBehavior : MonoBehaviour
 
         if (!followsPlayer && timePassed > 2)
         {
-            
-            transform.Translate(new Vector2(rndX, rndY) * Time.deltaTime);
+            enemyRb.velocity = new Vector2(rndX, rndY) * moveSpeed * Time.deltaTime;
         }
 
-        if (timePassed > 3)
+        if (timePassed > 3 && !followsPlayer)
         {
+            enemyRb.velocity = Vector2.zero;
             timePassed = 0;
             randomChosen = false;
         }
@@ -51,7 +52,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            transform.Translate((collision.transform.position - transform.position) * moveSpeed * Time.deltaTime);
+            enemyRb.velocity = (collision.transform.position - transform.position) * moveSpeed * Time.deltaTime;
             followsPlayer = true;
         }
     }
