@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 823742668}
   - component: {fileID: 823742669}
+  - component: {fileID: 823742670}
   m_Layer: 0
   m_Name: DoubleAxe
   m_TagString: Untagged
@@ -84,6 +85,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &823742670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823742667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c944830a9cc264cb2932e495e31000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponDamage: 3
 --- !u!1 &3818187382475611518
 GameObject:
   m_ObjectHideFlags: 0

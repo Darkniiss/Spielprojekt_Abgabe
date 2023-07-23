@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRb;
     private SpriteRenderer playerSprite;
 
+    private WeaponBehavior playerWeaponBehavior;
+
     private EnemyBehavior enemyFought;
 
     private Vector2 moveVec;
@@ -26,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
+        playerWeaponBehavior = playerWeapon.GetComponent<WeaponBehavior>();
     }
 
     void Update()
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour
     {
         if(timePassed > 2 && isFighting)
         {
-            enemyFought.healthPoints -= 2;
+            enemyFought.healthPoints -= playerWeaponBehavior.weaponDamage;
             timePassed = 0;
         }
     }
