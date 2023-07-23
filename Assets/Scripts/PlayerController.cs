@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] public float healthPoints;
     [SerializeField] private GameObject playerWeapon;
-    
     private Rigidbody2D playerRb;
     private SpriteRenderer playerSprite;
-
+    private SpriteRenderer playerWeaponSprite;
     private WeaponBehavior playerWeaponBehavior;
 
     private EnemyBehavior enemyFought;
@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveVec;
     private float timePassed;
     private bool isFighting;
-    public float healthPoints = 10f;
 
     private void Awake()
     {
@@ -28,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        playerWeaponSprite = playerWeapon.GetComponent<SpriteRenderer>();
         playerWeaponBehavior = playerWeapon.GetComponent<WeaponBehavior>();
     }
 
@@ -44,15 +44,19 @@ public class PlayerController : MonoBehaviour
 
     public void FlipSprite()
     {
+        
+
         if (moveVec.x > 0)
         {
             playerSprite.flipX = false;
+            playerWeaponSprite.flipX = true;
             playerWeapon.transform.position = transform.position + new Vector3(0.5f, 0f, 0f);
             playerWeapon.transform.rotation = Quaternion.Euler(0f, 0f, -25f);
         }
         else if (moveVec.x < 0)
         {
             playerSprite.flipX = true;
+            playerWeaponSprite.flipX = false;
             playerWeapon.transform.position = transform.position + new Vector3(-0.5f, 0f, 0f);
             playerWeapon.transform.rotation = Quaternion.Euler(0f, 0f, 25f);
         }
@@ -65,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if(timePassed > 2 && isFighting)
+        if(timePassed > playerWeaponBehavior.weaponCooldown && isFighting)
         {
             enemyFought.healthPoints -= playerWeaponBehavior.weaponDamage;
             timePassed = 0;

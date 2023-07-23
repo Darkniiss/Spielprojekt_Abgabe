@@ -73,10 +73,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 129430030, guid: 6280798eea884a34dab28d10f8e55238, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDamage: 3
+  weaponCooldown: 3
 --- !u!1 &3818187382475611518
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,8 +201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 175
+  healthPoints: 20
   playerWeapon: {fileID: 823742667}
-  healthPoints: 10
 --- !u!114 &1676393983649393165
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,17 +8,19 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private float idleSpeed;
     [SerializeField] public float healthPoints;
     [SerializeField] private GameObject enemyWeapon;
-
-    private PlayerController player;
     private Rigidbody2D enemyRb;
     private SpriteRenderer enemySprite;
     private SpriteRenderer enemyWeaponSprite;
+    private WeaponBehavior enemyWeaponBehavior;
+
+    private PlayerController player;
     private bool followsPlayer;
     private bool randomChosen;
     private bool isFighting;
     private float timePassed;
     private float rndX;
     private float rndY;
+    private Vector2 moveVec;
 
 
     private void Awake()
@@ -31,6 +33,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         enemyWeaponSprite = enemyWeapon.GetComponent<SpriteRenderer>();
+        enemyWeaponBehavior = enemyWeapon.GetComponent<WeaponBehavior>();
     }
 
     void Update()
@@ -42,6 +45,8 @@ public class EnemyBehavior : MonoBehaviour
             Destroy(gameObject);
         }
 
+        FlipSprite();
+
         if (!followsPlayer)
         {
         IdleMovement();
@@ -51,20 +56,19 @@ public class EnemyBehavior : MonoBehaviour
             Attack();
         }
 
-        FlipSprite();
 
     }
 
     public void FlipSprite()
     {
-        if (enemyRb.velocity.x > 0)
+        if (moveVec.x > 0 || rndX > 0)
         {
             enemySprite.flipX = false;
             enemyWeaponSprite.flipX = true;
             enemyWeapon.transform.position = transform.position + new Vector3(0.5f, 0f, 0f);
             enemyWeapon.transform.rotation = Quaternion.Euler(0f, 0f, -25f);
         }
-        else if (enemyRb.velocity.x < 0)
+        else if (moveVec.x < 0 || rndX < 0)
         {
             enemySprite.flipX = true;
             enemyWeaponSprite.flipX = false;
@@ -98,9 +102,9 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Attack()
     {
-        if(timePassed > 2)
+        if(timePassed > enemyWeaponBehavior.weaponCooldown)
         {
-            player.healthPoints--;
+            player.healthPoints -= enemyWeaponBehavior.weaponDamage;
             timePassed = 0;
         }
     }
@@ -109,7 +113,8 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !isFighting)
         {
-            enemyRb.velocity = (collision.transform.position - transform.position) * chaseSpeed * Time.deltaTime;
+            moveVec = collision.transform.position - transform.position;
+            enemyRb.velocity = moveVec * chaseSpeed * Time.deltaTime;
             followsPlayer = true;
         }
     }
