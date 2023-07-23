@@ -186,8 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 175
-  weapon: {fileID: 823742667}
-  playerRb: {fileID: 0}
+  playerWeapon: {fileID: 823742667}
+  healthPoints: 10
 --- !u!114 &1676393983649393165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +277,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5b198cb7-cf7f-4d03-bf51-f4511be41469
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1379780999566921314}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: aeafef7b-483e-491d-a3f8-1a3917918b04
+    m_ActionName: Player/Attack[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -328,4 +344,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
