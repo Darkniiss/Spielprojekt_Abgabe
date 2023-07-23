@@ -6,11 +6,13 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] private GameObject weapon;
 
     private Rigidbody2D playerRb;
     private SpriteRenderer sprite;
 
     private Vector2 moveVec;
+    private float weaponRot;
 
     private void Awake()
     {
@@ -30,10 +32,14 @@ public class PlayerController : MonoBehaviour
         if (moveVec.x > 0)
         {
             sprite.flipX = false;
+            weapon.transform.position = transform.position + new Vector3(0.5f, 0f, 0f);
+            weapon.transform.rotation = Quaternion.Euler(0f, 0f, -25f);
         }
         else if (moveVec.x < 0) 
         {
-            sprite.flipX = true; 
+            sprite.flipX = true;
+            weapon.transform.position = transform.position + new Vector3(-0.5f, 0f, 0f);
+            weapon.transform.rotation = Quaternion.Euler(0f, 0f, 25f);
         }
     }
 
