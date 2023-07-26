@@ -6,12 +6,13 @@ public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField] private float chaseSpeed;
     [SerializeField] private float idleSpeed;
-    [SerializeField] public float healthPoints;
+    public float healthPoints;
     [SerializeField] private GameObject enemyWeapon;
     private Rigidbody2D enemyRb;
     private SpriteRenderer enemySprite;
     private SpriteRenderer enemyWeaponSprite;
     private WeaponBehavior enemyWeaponBehavior;
+    
 
     private PlayerController player;
     private bool followsPlayer;
@@ -21,8 +22,8 @@ public class EnemyBehavior : MonoBehaviour
     private float rndX;
     private float rndY;
     private Vector2 moveVec;
+    private float moveVecLength;
 
-    public float moveVecLength;
 
 
     private void Awake()
