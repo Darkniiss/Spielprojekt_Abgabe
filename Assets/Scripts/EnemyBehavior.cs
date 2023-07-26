@@ -22,6 +22,8 @@ public class EnemyBehavior : MonoBehaviour
     private float rndY;
     private Vector2 moveVec;
 
+    public float moveVecLength;
+
 
     private void Awake()
     {
@@ -38,16 +40,17 @@ public class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
+        moveVec = player.transform.position - transform.position;
+        moveVecLength = moveVec.magnitude;
+
         timePassed += Time.deltaTime;
 
-        if(healthPoints <= 0)
-        {
-            Destroy(gameObject);
-        }
+        RangeDetection();
+
 
         FlipSprite();
 
-        if (!followsPlayer)
+        if (!followsPlayer && !isFighting)
         {
         IdleMovement();
         }
@@ -56,6 +59,10 @@ public class EnemyBehavior : MonoBehaviour
             Attack();
         }
 
+        if(healthPoints <= 0)
+        {
+            Destroy(gameObject);
+        }
 
     }
 
@@ -100,6 +107,27 @@ public class EnemyBehavior : MonoBehaviour
         
     }
 
+    private void RangeDetection()
+    {
+        if (moveVecLength <= 4f && moveVecLength >= 1.5f)
+        {
+            enemyRb.velocity = moveVec * chaseSpeed * Time.deltaTime;
+            followsPlayer = true;
+            isFighting = false;
+        }
+        else if (moveVecLength < 1.5f)
+        {
+            enemyRb.velocity = Vector2.zero;
+            followsPlayer = false;
+            isFighting = true;
+        }
+        else
+        {
+            followsPlayer = false;
+            isFighting = false;
+        }
+    }
+
     private void Attack()
     {
         if(timePassed > enemyWeaponBehavior.weaponCooldown)
@@ -109,38 +137,4 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && !isFighting)
-        {
-            moveVec = collision.transform.position - transform.position;
-            enemyRb.velocity = moveVec * chaseSpeed * Time.deltaTime;
-            followsPlayer = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            followsPlayer = false;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            isFighting = true;
-            timePassed = 0;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            isFighting = false;
-        }
-    }
 }
