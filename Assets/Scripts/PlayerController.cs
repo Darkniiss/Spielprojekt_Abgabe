@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
-    [SerializeField] public float healthPoints;
+    public float healthPoints;
     [SerializeField] private GameObject playerWeapon;
     private Rigidbody2D playerRb;
     private SpriteRenderer playerSprite;
@@ -76,20 +76,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if(collision.gameObject.layer == 7)
         {
-            enemyFought = collision.gameObject.GetComponent<EnemyBehavior>();
-            isFighting = true;
+        enemyFought = collision.gameObject.GetComponent<EnemyBehavior>();
+        isFighting = true;
+
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if(collision.gameObject.layer == 7)
         {
-            isFighting = false;
+
+        isFighting = false;
         }
     }
 }

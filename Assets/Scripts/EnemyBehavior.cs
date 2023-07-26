@@ -33,7 +33,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        player = FindObjectOfType<PlayerController>().GetComponent<PlayerController>();
         enemyWeaponSprite = enemyWeapon.GetComponent<SpriteRenderer>();
         enemyWeaponBehavior = enemyWeapon.GetComponent<WeaponBehavior>();
     }
