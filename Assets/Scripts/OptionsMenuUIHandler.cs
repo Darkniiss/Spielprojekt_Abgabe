@@ -9,8 +9,7 @@ public class OptionsMenuUIHandler : MonoBehaviour
 {
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject optionsMenu;
-    [SerializeField] private Slider volumeSlider;
-    [SerializeField] private TMP_Dropdown qualityDropdown;
+    
     [SerializeField] private AudioMixer mainMixer;
 
     public void BackToMenu()
@@ -19,13 +18,18 @@ public class OptionsMenuUIHandler : MonoBehaviour
         optionsMenu.SetActive(false);
     }
 
-    public void SetVolume()
+    public void SetVolume(float _volume)
     {
-        mainMixer.SetFloat("volume", Mathf.Log10(volumeSlider.value) * 20);
+        mainMixer.SetFloat("volume", Mathf.Log10(_volume) * 20);
     }
 
-    public void SetQuality()
+    public void SetQuality(int _quality)
     {
-        QualitySettings.SetQualityLevel(qualityDropdown.value);
+        QualitySettings.SetQualityLevel(_quality);
+    }
+
+    public void SetFullscreen(bool _isFullscreen)
+    {
+        Screen.fullScreen = _isFullscreen;
     }
 }
