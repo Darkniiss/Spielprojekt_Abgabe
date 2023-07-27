@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuUIHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject menu;
     [SerializeField] private GameObject optionsMenu;
 
     public void StartGame()
@@ -15,7 +15,7 @@ public class MainMenuUIHandler : MonoBehaviour
 
     public void OpenOptionsMenu()
     {
-        mainMenu.SetActive(false);
+        menu.SetActive(false);
         optionsMenu.SetActive(true);
     }
 
@@ -27,9 +27,5 @@ public class MainMenuUIHandler : MonoBehaviour
         Application.Quit();
     }
 
-    public void BackToMainMenu()
-    {
-        mainMenu.SetActive(true);
-        optionsMenu.SetActive(false);
-    }
+    
 }
