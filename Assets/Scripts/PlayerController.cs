@@ -90,11 +90,12 @@ public class PlayerController : MonoBehaviour
             if(activeScene == SceneManager.GetSceneByName("HomeScene"))
             {
                 SceneManager.LoadScene("TownScene");
+                transform.position = new Vector2(-7.5f, 1.5f);
             }
             else if(activeScene == SceneManager.GetSceneByName("TownScene"))
             {
-
             SceneManager.LoadScene("HomeScene");
+                transform.position = new Vector2(-1.5f, -1.5f);
             }
         }
         else if(isInDoorShopRange)
@@ -111,11 +112,15 @@ public class PlayerController : MonoBehaviour
         isFighting = true;
 
         }
-        else if(collision.gameObject.layer == 9 && collision.gameObject.name == "DoorHome")
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 9 && collision.gameObject.name == "DoorHome")
         {
             isInDoorHomeRange = true;
         }
-        else if(collision.gameObject.layer == 9 && collision.gameObject.name == "DoorShop")
+        else if (collision.gameObject.layer == 9 && collision.gameObject.name == "DoorShop")
         {
             isInDoorShopRange = true;
         }

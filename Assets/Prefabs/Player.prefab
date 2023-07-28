@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 823742669}
   - component: {fileID: 823742670}
   m_Layer: 0
-  m_Name: DoubleAxe
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 129430030, guid: 6280798eea884a34dab28d10f8e55238, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &823742670
@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c944830a9cc264cb2932e495e31000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 3
-  weaponCooldown: 3
+  weaponDamage: 0
+  weaponCooldown: 0
 --- !u!1 &2099393652
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +237,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 765212839, guid: 6280798eea884a34dab28d10f8e55238, type: 3}
+  m_Sprite: {fileID: -1967480392, guid: 6280798eea884a34dab28d10f8e55238, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 175
-  healthPoints: 20
+  healthPoints: 10
   playerWeapon: {fileID: 823742667}
 --- !u!114 &1676393983649393165
 MonoBehaviour:
@@ -413,7 +413,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!50 &2671910956370058148
 Rigidbody2D:
