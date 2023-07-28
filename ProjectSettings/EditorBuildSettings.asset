@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 83e1c060ab7e6cf4bb704280349e8e33
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
+    path: Assets/Scenes/HomeScene.unity
+    guid: 0e58d9362969038439d885626c36d090
+  - enabled: 1
+    path: Assets/Scenes/TownScene.unity
+    guid: 5468dc542fcb0994f9e90990f47c267c
+  - enabled: 1
+    path: Assets/Scenes/ShopScene.unity
+    guid: bcb215c34fb7e6941af5628cfbb122dd
+  - enabled: 1
+    path: Assets/Scenes/DungeonScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects: {}

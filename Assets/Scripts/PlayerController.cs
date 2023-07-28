@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveVec;
     private float timePassed;
     private bool isFighting;
+    private bool isInDoorHomeRange;
+    private bool isInDoorShopRange;
 
     private void Awake()
     {
@@ -76,7 +79,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if(isInDoorHomeRange)
+        {
+            SceneManager.LoadScene("HomeScene");
+        }
+        else if(isInDoorShopRange)
+        {
+            SceneManager.LoadScene("ShopScene");
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -86,14 +99,30 @@ public class PlayerController : MonoBehaviour
         isFighting = true;
 
         }
+        else if(collision.gameObject.layer == 9 && collision.gameObject.name == "DoorHome")
+        {
+            isInDoorHomeRange = true;
+        }
+        else if(collision.gameObject.layer == 9 && collision.gameObject.name == "DoorShop")
+        {
+            isInDoorShopRange = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 7)
+        if (collision.gameObject.layer == 7)
         {
 
-        isFighting = false;
+            isFighting = false;
+        }
+        else if (collision.gameObject.layer == 9 && collision.gameObject.name == "DoorHome")
+        {
+            isInDoorHomeRange = false;
+        }
+        else if (collision.gameObject.layer == 9 && collision.gameObject.name == "DoorShop")
+        {
+            isInDoorShopRange = false;
         }
     }
 }
