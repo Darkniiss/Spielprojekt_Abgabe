@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(this);
+
         playerWeaponSprite = playerWeapon.GetComponent<SpriteRenderer>();
         playerWeaponBehavior = playerWeapon.GetComponent<WeaponBehavior>();
     }
@@ -81,9 +83,19 @@ public class PlayerController : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if(isInDoorHomeRange)
+        if(isInDoorHomeRange && context.performed)
         {
+            Scene activeScene = SceneManager.GetActiveScene();
+
+            if(activeScene == SceneManager.GetSceneByName("HomeScene"))
+            {
+                SceneManager.LoadScene("TownScene");
+            }
+            else if(activeScene == SceneManager.GetSceneByName("TownScene"))
+            {
+
             SceneManager.LoadScene("HomeScene");
+            }
         }
         else if(isInDoorShopRange)
         {
