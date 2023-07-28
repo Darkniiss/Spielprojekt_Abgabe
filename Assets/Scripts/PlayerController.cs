@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
+    public float moveSpeed;
     public float healthPoints;
     [SerializeField] private GameObject playerWeapon;
     private Rigidbody2D playerRb;
@@ -18,9 +18,15 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveVec;
     private float timePassed;
+    private ClassBehavior classBehavior;
+    private WeaponBehavior weaponBehavior;
+    private SpriteRenderer classSprite;
+    private SpriteRenderer weaponSprite;
     private bool isFighting;
     private bool isInDoorHomeRange;
     private bool isInDoorShopRange;
+    private bool isInClassRange;
+    private bool isInWeaponRange;
 
     private void Awake()
     {
@@ -102,6 +108,20 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene("ShopScene");
         }
+        else if(isInClassRange && context.performed)
+        {
+            playerSprite.sprite = classSprite.sprite;
+            moveSpeed = classBehavior.classMoveSpeed;
+            healthPoints = classBehavior.classHealthpoints;
+        }
+        else if(isInWeaponRange && context.performed)
+        {
+            playerWeaponSprite.sprite = weaponSprite.sprite;
+            playerWeaponBehavior.weaponDamage = weaponBehavior.weaponDamage;
+            playerWeaponBehavior.weaponCooldown = weaponBehavior.weaponCooldown;
+        }
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -111,6 +131,18 @@ public class PlayerController : MonoBehaviour
         enemyFought = collision.gameObject.GetComponent<EnemyBehavior>();
         isFighting = true;
 
+        }
+        else if(collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Class"))
+        {
+            classBehavior = collision.gameObject.GetComponent<ClassBehavior>();
+            classSprite = collision.gameObject.GetComponent<SpriteRenderer>();
+            isInClassRange = true;
+        }
+        else if(collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Weapon"))
+        {
+            weaponBehavior = collision.gameObject.GetComponent<WeaponBehavior>();
+            weaponSprite = collision.gameObject.GetComponent <SpriteRenderer>();
+            isInWeaponRange = true;
         }
     }
 
@@ -140,6 +172,14 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.layer == 9 && collision.gameObject.name == "DoorShop")
         {
             isInDoorShopRange = false;
+        }
+        else if(collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Class"))
+        {
+            isInClassRange = false;
+        }
+        else if(collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Weapon"))
+        {
+            isInWeaponRange = false;
         }
     }
 }

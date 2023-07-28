@@ -6,6 +6,11 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
 
+    private void Awake()
+    {
+        
+    }
+
     void Start()
     {
         DontDestroyOnLoad(this);
