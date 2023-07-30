@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float healthPoints;
     [SerializeField] private GameObject playerWeapon;
+    [SerializeField] private GameObject playerCanvas;
     private Rigidbody2D playerRb;
     private SpriteRenderer playerSprite;
     private SpriteRenderer playerWeaponSprite;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool isFighting;
     private bool isInDoorHomeRange;
     private bool isInDoorShopRange;
+    private bool isInGateRange;
     private bool isInClassRange;
     private bool isInWeaponRange;
 
@@ -48,14 +50,14 @@ public class PlayerController : MonoBehaviour
 
         playerRb.velocity = (moveVec * moveSpeed * Time.deltaTime);
 
-        
+
 
         FlipSprite();
     }
 
     public void FlipSprite()
     {
-        
+
 
         if (moveVec.x > 0)
         {
@@ -80,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if(timePassed > playerWeaponBehavior.weaponCooldown && isFighting)
+        if (timePassed > playerWeaponBehavior.weaponCooldown && isFighting)
         {
             enemyFought.healthPoints -= playerWeaponBehavior.weaponDamage;
             timePassed = 0;
@@ -89,59 +91,81 @@ public class PlayerController : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if(isInDoorHomeRange && context.performed)
+        if (isInDoorHomeRange && context.performed)
         {
             Scene activeScene = SceneManager.GetActiveScene();
 
-            if(activeScene == SceneManager.GetSceneByName("HomeScene"))
+            if (activeScene == SceneManager.GetSceneByName("HomeScene"))
             {
                 SceneManager.LoadScene("TownScene");
                 transform.position = new Vector2(-7.5f, 1.5f);
             }
-            else if(activeScene == SceneManager.GetSceneByName("TownScene"))
+            else if (activeScene == SceneManager.GetSceneByName("TownScene"))
             {
-            SceneManager.LoadScene("HomeScene");
+                SceneManager.LoadScene("HomeScene");
                 transform.position = new Vector2(-1.5f, -1.5f);
             }
         }
-        else if(isInDoorShopRange)
+        else if (isInDoorShopRange && context.performed)
         {
+            Scene activeScene = SceneManager.GetActiveScene();
+
+            if (activeScene == SceneManager.GetSceneByName("ShopScene"))
+            {
+                SceneManager.LoadScene("TownScene");
+                transform.position = new Vector2(-5.5f, -6.5f);
+            }
+            else if(activeScene == SceneManager.GetSceneByName("TownScene"))
+            {
             SceneManager.LoadScene("ShopScene");
+                transform.position = new Vector2(1.5f, -1.5f);
+            }
         }
-        else if(isInClassRange && context.performed)
+        else if(isInGateRange && context.performed)
+        {
+            Scene activeScene = SceneManager.GetActiveScene();
+
+            if (activeScene == SceneManager.GetSceneByName("TownScene"))
+            {
+                SceneManager.LoadScene("DungeonScene");
+                transform.position = Vector2.zero;
+                playerCanvas.SetActive(true);
+            }
+        }
+        else if (isInClassRange && context.performed)
         {
             playerSprite.sprite = classSprite.sprite;
             moveSpeed = classBehavior.classMoveSpeed;
             healthPoints = classBehavior.classHealthpoints;
         }
-        else if(isInWeaponRange && context.performed)
+        else if (isInWeaponRange && context.performed)
         {
             playerWeaponSprite.sprite = weaponSprite.sprite;
             playerWeaponBehavior.weaponDamage = weaponBehavior.weaponDamage;
             playerWeaponBehavior.weaponCooldown = weaponBehavior.weaponCooldown;
         }
 
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 7)
+        if (collision.gameObject.layer == 7)
         {
-        enemyFought = collision.gameObject.GetComponent<EnemyBehavior>();
-        isFighting = true;
+            enemyFought = collision.gameObject.GetComponent<EnemyBehavior>();
+            isFighting = true;
 
         }
-        else if(collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Class"))
+        else if (collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Class"))
         {
             classBehavior = collision.gameObject.GetComponent<ClassBehavior>();
             classSprite = collision.gameObject.GetComponent<SpriteRenderer>();
             isInClassRange = true;
         }
-        else if(collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Weapon"))
+        else if (collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Weapon"))
         {
             weaponBehavior = collision.gameObject.GetComponent<WeaponBehavior>();
-            weaponSprite = collision.gameObject.GetComponent <SpriteRenderer>();
+            weaponSprite = collision.gameObject.GetComponent<SpriteRenderer>();
             isInWeaponRange = true;
         }
     }
@@ -155,6 +179,10 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.layer == 9 && collision.gameObject.name == "DoorShop")
         {
             isInDoorShopRange = true;
+        }
+        else if(collision.gameObject.layer == 9 && collision.gameObject.name == "Gate")
+        {
+            isInGateRange = true;
         }
     }
 
@@ -173,11 +201,15 @@ public class PlayerController : MonoBehaviour
         {
             isInDoorShopRange = false;
         }
-        else if(collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Class"))
+        else if(collision.gameObject.layer == 9 && collision.gameObject.name == "Gate")
+        {
+            isInGateRange=false;
+        }
+        else if (collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Class"))
         {
             isInClassRange = false;
         }
-        else if(collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Weapon"))
+        else if (collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Weapon"))
         {
             isInWeaponRange = false;
         }
