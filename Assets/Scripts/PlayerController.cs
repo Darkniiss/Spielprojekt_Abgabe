@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private bool isInDoorHomeRange;
     private bool isInDoorShopRange;
     private bool isInGateRange;
+    public bool isInHealingRange;
+    public bool hasHealed;
     private bool isInClassRange;
     private bool isInWeaponRange;
 
@@ -144,6 +146,11 @@ public class PlayerController : MonoBehaviour
             playerWeaponBehavior.weaponDamage = weaponBehavior.weaponDamage;
             playerWeaponBehavior.weaponCooldown = weaponBehavior.weaponCooldown;
         }
+        else if(isInHealingRange && !hasHealed && context.performed)
+        {
+            healthPoints += 5;
+            hasHealed = true;
+        }
 
 
     }
@@ -167,6 +174,10 @@ public class PlayerController : MonoBehaviour
             weaponBehavior = collision.gameObject.GetComponent<WeaponBehavior>();
             weaponSprite = collision.gameObject.GetComponent<SpriteRenderer>();
             isInWeaponRange = true;
+        }
+        else if(collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Healing"))
+        {
+            isInHealingRange = true;
         }
     }
 
@@ -212,6 +223,10 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Weapon"))
         {
             isInWeaponRange = false;
+        }
+        else if(collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Healing"))
+        {
+            isInHealingRange = false;
         }
     }
 }

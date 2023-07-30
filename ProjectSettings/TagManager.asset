@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Weapon
   - Class
+  - Healing
   layers:
   - Default
   - TransparentFX
