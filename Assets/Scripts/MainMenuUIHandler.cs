@@ -23,6 +23,7 @@ public class MainMenuUIHandler : MonoBehaviour
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.ExitPlaymode();
+        UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
     }

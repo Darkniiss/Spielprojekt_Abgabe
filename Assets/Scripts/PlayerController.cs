@@ -24,9 +24,9 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer classSprite;
     private SpriteRenderer weaponSprite;
     private bool isFighting;
-    private bool isInDoorHomeRange;
-    private bool isInDoorShopRange;
-    private bool isInGateRange;
+    public bool isInDoorHomeRange;
+    public bool isInDoorShopRange;
+    public bool isInGateRange;
     public bool isInHealingRange;
     public bool hasHealed;
     private bool isInClassRange;
@@ -132,6 +132,7 @@ public class PlayerController : MonoBehaviour
                 SceneManager.LoadScene("DungeonScene");
                 transform.position = Vector2.zero;
                 playerCanvas.SetActive(true);
+                isInGateRange = false;
             }
         }
         else if (isInClassRange && context.performed)
