@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MainMenuUIHandler : MonoBehaviour
 {
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject selectedObject;
+    [SerializeField] private EventSystem eventSystem;
 
     public void StartGame()
     {
@@ -28,5 +31,9 @@ public class MainMenuUIHandler : MonoBehaviour
         Application.Quit();
     }
 
+    public void SetSelectedObject()
+    {
+        eventSystem.SetSelectedGameObject(selectedObject);
+    }
     
 }

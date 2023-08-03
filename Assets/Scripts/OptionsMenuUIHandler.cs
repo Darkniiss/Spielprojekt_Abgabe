@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class OptionsMenuUIHandler : MonoBehaviour
 {
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject selectedObject;
     [SerializeField] private AudioMixer mainMixer;
     [SerializeField] private TMP_Dropdown resolutionDropdown;
+    [SerializeField] private EventSystem eventSystem;
 
     private Resolution[] resolutions;
 
@@ -62,5 +65,10 @@ public class OptionsMenuUIHandler : MonoBehaviour
     public void SetResolution(int _resolution)
     {
         Screen.SetResolution(resolutions[_resolution].width, resolutions[_resolution].height, Screen.fullScreen);
+    }
+
+    public void SetSelectedObject()
+    {
+        eventSystem.SetSelectedGameObject(selectedObject);
     }
 }
