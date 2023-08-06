@@ -6,12 +6,13 @@ public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField] private float chaseSpeed;
     [SerializeField] private float idleSpeed;
+    [SerializeField] private float weaponDamage;
+    [SerializeField] private float weaponCooldown;
     public float healthPoints;
     [SerializeField] private GameObject enemyWeapon;
     private Rigidbody2D enemyRb;
     private SpriteRenderer enemySprite;
     private SpriteRenderer enemyWeaponSprite;
-    private WeaponBehavior enemyWeaponBehavior;
     
 
     private PlayerController player;
@@ -36,7 +37,6 @@ public class EnemyBehavior : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>().GetComponent<PlayerController>();
         enemyWeaponSprite = enemyWeapon.GetComponent<SpriteRenderer>();
-        enemyWeaponBehavior = enemyWeapon.GetComponent<WeaponBehavior>();
     }
 
     void Update()
@@ -131,9 +131,9 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Attack()
     {
-        if(timePassed > enemyWeaponBehavior.weaponCooldown)
+        if(timePassed > weaponCooldown)
         {
-            player.healthPoints -= enemyWeaponBehavior.weaponDamage;
+            player.healthPoints -= weaponDamage;
             timePassed = 0;
         }
     }

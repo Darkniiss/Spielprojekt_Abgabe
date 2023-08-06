@@ -8,32 +8,29 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public float healthPoints;
+    public float weaponDamage;
+    public float weaponCooldown;
     [SerializeField] private GameObject playerWeapon;
     [SerializeField] private GameObject playerCanvas;
     private Rigidbody2D playerRb;
-    private SpriteRenderer playerSprite;
-    private SpriteRenderer playerWeaponSprite;
-    private WeaponBehavior playerWeaponBehavior;
 
     private EnemyBehavior enemyFought;
 
+    public SpriteRenderer playerSprite;
+    public SpriteRenderer playerWeaponSprite;
+    public SceneLoader sceneLoader;
+    public ShopBehavior shopBehavior;
+
     private Vector2 moveVec;
     private float timePassed;
-    private ClassBehavior classBehavior;
-    private WeaponBehavior weaponBehavior;
-    private SpriteRenderer classSprite;
-    private SpriteRenderer weaponSprite;
+
+    
     private bool isFighting;
-    public bool isInDoorHomeRange;
-    public bool isInDoorShopRange;
-    public bool isInGateRange;
-    public bool isInHealingRange;
-    public bool hasHealed;
-    private bool isInClassRange;
-    private bool isInWeaponRange;
+
 
     private void Awake()
     {
+
         playerRb = GetComponent<Rigidbody2D>();
         playerSprite = GetComponent<SpriteRenderer>();
     }
@@ -43,7 +40,6 @@ public class PlayerController : MonoBehaviour
         DontDestroyOnLoad(this);
 
         playerWeaponSprite = playerWeapon.GetComponent<SpriteRenderer>();
-        playerWeaponBehavior = playerWeapon.GetComponent<WeaponBehavior>();
     }
 
     void Update()
@@ -84,74 +80,36 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (timePassed > playerWeaponBehavior.weaponCooldown && isFighting)
+        if (timePassed > weaponCooldown && isFighting)
         {
-            enemyFought.healthPoints -= playerWeaponBehavior.weaponDamage;
+            enemyFought.healthPoints -= weaponDamage;
             timePassed = 0;
         }
     }
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if (isInDoorHomeRange && context.performed)
-        {
-            Scene activeScene = SceneManager.GetActiveScene();
 
-            if (activeScene == SceneManager.GetSceneByName("HomeScene"))
-            {
-                SceneManager.LoadScene("TownScene");
-                transform.position = new Vector2(-7.5f, 1.5f);
-            }
-            else if (activeScene == SceneManager.GetSceneByName("TownScene"))
-            {
-                SceneManager.LoadScene("HomeScene");
-                transform.position = new Vector2(-1.5f, -1.5f);
-            }
-        }
-        else if (isInDoorShopRange && context.performed)
+        if (sceneLoader != null)
         {
-            Scene activeScene = SceneManager.GetActiveScene();
 
-            if (activeScene == SceneManager.GetSceneByName("ShopScene"))
+            if (sceneLoader.playerIsInRange && context.performed)
             {
-                SceneManager.LoadScene("TownScene");
-                transform.position = new Vector2(-5.5f, -6.5f);
-            }
-            else if(activeScene == SceneManager.GetSceneByName("TownScene"))
-            {
-            SceneManager.LoadScene("ShopScene");
-                transform.position = new Vector2(1.5f, -1.5f);
+                sceneLoader.LoadScene();
             }
         }
-        else if(isInGateRange && context.performed)
+        else if (shopBehavior != null)
         {
-            Scene activeScene = SceneManager.GetActiveScene();
 
-            if (activeScene == SceneManager.GetSceneByName("TownScene"))
+            if (shopBehavior.playerIsInRange && context.performed)
             {
-                SceneManager.LoadScene("DungeonScene");
-                transform.position = Vector2.zero;
-                playerCanvas.SetActive(true);
-                isInGateRange = false;
+                shopBehavior.SetShopItem();
             }
+
+
         }
-        else if (isInClassRange && context.performed)
-        {
-            playerSprite.sprite = classSprite.sprite;
-            moveSpeed = classBehavior.classMoveSpeed;
-            healthPoints = classBehavior.classHealthpoints;
-        }
-        else if (isInWeaponRange && context.performed)
-        {
-            playerWeaponSprite.sprite = weaponSprite.sprite;
-            playerWeaponBehavior.weaponDamage = weaponBehavior.weaponDamage;
-            playerWeaponBehavior.weaponCooldown = weaponBehavior.weaponCooldown;
-        }
-        else if(isInHealingRange && !hasHealed && context.performed)
-        {
-            healthPoints += 5;
-            hasHealed = true;
-        }
+
+
 
 
     }
@@ -164,70 +122,27 @@ public class PlayerController : MonoBehaviour
             isFighting = true;
 
         }
-        else if (collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Class"))
+        else if (collision.gameObject.CompareTag("Door"))
         {
-            classBehavior = collision.gameObject.GetComponent<ClassBehavior>();
-            classSprite = collision.gameObject.GetComponent<SpriteRenderer>();
-            isInClassRange = true;
+            sceneLoader = collision.gameObject.GetComponent<SceneLoader>();
         }
-        else if (collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Weapon"))
+        else if (collision.gameObject.CompareTag("Weapon") || collision.gameObject.CompareTag("Class"))
         {
-            weaponBehavior = collision.gameObject.GetComponent<WeaponBehavior>();
-            weaponSprite = collision.gameObject.GetComponent<SpriteRenderer>();
-            isInWeaponRange = true;
+            shopBehavior = collision.gameObject.GetComponent<ShopBehavior>();
         }
-        else if(collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Healing"))
-        {
-            isInHealingRange = true;
-        }
+
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == 9 && collision.gameObject.name == "DoorHome")
-        {
-            isInDoorHomeRange = true;
-        }
-        else if (collision.gameObject.layer == 9 && collision.gameObject.name == "DoorShop")
-        {
-            isInDoorShopRange = true;
-        }
-        else if(collision.gameObject.layer == 9 && collision.gameObject.name == "Gate")
-        {
-            isInGateRange = true;
-        }
-    }
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        
         if (collision.gameObject.layer == 7)
         {
 
             isFighting = false;
         }
-        else if (collision.gameObject.layer == 9 && collision.gameObject.name == "DoorHome")
-        {
-            isInDoorHomeRange = false;
-        }
-        else if (collision.gameObject.layer == 9 && collision.gameObject.name == "DoorShop")
-        {
-            isInDoorShopRange = false;
-        }
-        else if(collision.gameObject.layer == 9 && collision.gameObject.name == "Gate")
-        {
-            isInGateRange=false;
-        }
-        else if (collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Class"))
-        {
-            isInClassRange = false;
-        }
-        else if (collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Weapon"))
-        {
-            isInWeaponRange = false;
-        }
-        else if(collision.gameObject.layer == 9 && collision.gameObject.CompareTag("Healing"))
-        {
-            isInHealingRange = false;
-        }
+
     }
 }

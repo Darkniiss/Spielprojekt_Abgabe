@@ -8,6 +8,8 @@ TagManager:
   - Weapon
   - Class
   - Healing
+  - Door
+  - ShopItem
   layers:
   - Default
   - TransparentFX
