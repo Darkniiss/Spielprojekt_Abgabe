@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
-    public GameManager Instance { get; private set; }
+    public static GameManager Instance { get; private set; }
+    public PlayerController player { get;private set; }
 
     private void Awake()
     {
@@ -20,7 +21,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Instantiate(playerPrefab, Vector2.zero, playerPrefab.transform.rotation);
+
+        player = Instantiate(playerPrefab, Vector2.zero, playerPrefab.transform.rotation).GetComponent<PlayerController>();
     }
 
     void Update()

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6825715122685933481}
   m_Layer: 0
   m_Name: ShopItem
-  m_TagString: ShopItem
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,7 +50,6 @@ MonoBehaviour:
   weaponCooldown: 0
   classMoveSpeed: 0
   classHealthpoints: 0
-  shopSprite: {fileID: 0}
   playerIsInRange: 0
 --- !u!212 &652355419269488214
 SpriteRenderer:

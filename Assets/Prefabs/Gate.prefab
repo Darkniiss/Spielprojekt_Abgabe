@@ -455,9 +455,9 @@ GameObject:
   - component: {fileID: 6335948072811943857}
   - component: {fileID: 6335948072811943858}
   - component: {fileID: -7055790167389782358}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Gate
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -520,4 +520,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndex: 4
+  scenePosition: {x: 0, y: 0}
   playerIsInRange: 0

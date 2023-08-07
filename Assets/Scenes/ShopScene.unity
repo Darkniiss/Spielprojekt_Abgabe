@@ -130,13 +130,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3517140615916310615, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
+      propertyPath: classMoveSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -3517140615916310615, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
+      propertyPath: classHealthpoints
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_Name
       value: Berserker
       objectReference: {fileID: 0}
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_TagString
-      value: Class
+      value: Interactable
       objectReference: {fileID: 0}
     - target: {fileID: 652355419269488214, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_Sprite
@@ -932,13 +940,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3517140615916310615, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
+      propertyPath: classMoveSpeed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: -3517140615916310615, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
+      propertyPath: classHealthpoints
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_Name
       value: Knight
       objectReference: {fileID: 0}
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_TagString
-      value: Class
+      value: Interactable
       objectReference: {fileID: 0}
     - target: {fileID: 652355419269488214, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_Sprite
@@ -1029,13 +1045,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3517140615916310615, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
+      propertyPath: weaponDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -3517140615916310615, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
+      propertyPath: weaponCooldown
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_Name
       value: DoubleAxe
       objectReference: {fileID: 0}
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_TagString
-      value: Weapon
+      value: Interactable
       objectReference: {fileID: 0}
     - target: {fileID: 652355419269488214, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_Sprite
@@ -2349,13 +2373,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3517140615916310615, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
+      propertyPath: weaponDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3517140615916310615, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
+      propertyPath: weaponCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_Name
       value: Sword
       objectReference: {fileID: 0}
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_TagString
-      value: Weapon
+      value: Interactable
       objectReference: {fileID: 0}
     - target: {fileID: 652355419269488214, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_Sprite

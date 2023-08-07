@@ -10,6 +10,7 @@ TagManager:
   - Healing
   - Door
   - ShopItem
+  - Interactable
   layers:
   - Default
   - TransparentFX

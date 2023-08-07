@@ -2167,7 +2167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8148749654742278719, guid: 8e690db38fe5bb046b6ccc9ee7e75899, type: 3}
       propertyPath: m_TagString
-      value: Door
+      value: Interactable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e690db38fe5bb046b6ccc9ee7e75899, type: 3}

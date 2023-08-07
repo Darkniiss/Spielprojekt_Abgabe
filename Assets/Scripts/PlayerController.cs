@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour
 
     public SpriteRenderer playerSprite;
     public SpriteRenderer playerWeaponSprite;
-    public SceneLoader sceneLoader;
-    public ShopBehavior shopBehavior;
+    public IInteractable interactable;
+    
 
     private Vector2 moveVec;
     private float timePassed;
@@ -89,25 +89,13 @@ public class PlayerController : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-
-        if (sceneLoader != null)
+        if(interactable != null && context.performed)
         {
-
-            if (sceneLoader.playerIsInRange && context.performed)
-            {
-                sceneLoader.LoadScene();
-            }
+            interactable.Interact();
         }
-        else if (shopBehavior != null)
-        {
-
-            if (shopBehavior.playerIsInRange && context.performed)
-            {
-                shopBehavior.SetShopItem();
-            }
 
 
-        }
+       
 
 
 
@@ -122,22 +110,33 @@ public class PlayerController : MonoBehaviour
             isFighting = true;
 
         }
-        else if (collision.gameObject.CompareTag("Door"))
+        else if(collision.gameObject.CompareTag("Interactable")) 
         {
-            sceneLoader = collision.gameObject.GetComponent<SceneLoader>();
+            interactable = collision.gameObject.GetComponent<IInteractable>();
         }
-        else if (collision.gameObject.CompareTag("Weapon") || collision.gameObject.CompareTag("Class"))
-        {
-            shopBehavior = collision.gameObject.GetComponent<ShopBehavior>();
-        }
+        
 
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(interactable == null)
+        {
+           if (collision.gameObject.CompareTag("Interactable"))
+            {
+                interactable = collision.gameObject.GetComponent<IInteractable>();
+            }
+        }
     }
 
 
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.CompareTag("Interactable"))
+        {
+            interactable = null;
+        }
         if (collision.gameObject.layer == 7)
         {
 
