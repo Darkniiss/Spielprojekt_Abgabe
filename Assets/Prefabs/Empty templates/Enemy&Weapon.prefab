@@ -162,7 +162,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3983317775213930022}
   - component: {fileID: 3983317775213930023}
-  - component: {fileID: 3983317775213930021}
   - component: {fileID: 3983317775213930020}
   - component: {fileID: 947226366686830486}
   m_Layer: 7
@@ -241,23 +240,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3983317775213930021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3983317775213930024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d3ffcbca2efe449bd6ba420ba0e3ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chaseSpeed: 0
-  idleSpeed: 0
-  healthPoints: 0
-  enemyWeapon: {fileID: 5794666793381065765}
-  moveVecLength: 0
 --- !u!61 &3983317775213930020
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -602,15 +584,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4370013453102004911, guid: 918987ad1a37190429c5e24a69daf628, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 918987ad1a37190429c5e24a69daf628, type: 3}
 --- !u!4 &1137732829809018653 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3627887783962310959, guid: 918987ad1a37190429c5e24a69daf628, type: 3}
-  m_PrefabInstance: {fileID: 4436838710651944498}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5794666793381065765 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7924114277150394903, guid: 918987ad1a37190429c5e24a69daf628, type: 3}
   m_PrefabInstance: {fileID: 4436838710651944498}
   m_PrefabAsset: {fileID: 0}

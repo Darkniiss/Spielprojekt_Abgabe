@@ -2,28 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehavior : MonoBehaviour
+public abstract class EnemyBehavior : MonoBehaviour
 {
-    [SerializeField] private float chaseSpeed;
-    [SerializeField] private float idleSpeed;
-    [SerializeField] private float weaponDamage;
-    [SerializeField] private float weaponCooldown;
+    [SerializeField] protected float chaseSpeed;
+    [SerializeField] protected float idleSpeed;
+    [SerializeField] protected float weaponDamage;
+    [SerializeField] protected float weaponCooldown;
+    [SerializeField] protected float detectionRange;
+    [SerializeField] protected float fightRange;
     public float healthPoints;
-    [SerializeField] private GameObject enemyWeapon;
-    private Rigidbody2D enemyRb;
-    private SpriteRenderer enemySprite;
-    private SpriteRenderer enemyWeaponSprite;
+    [SerializeField] protected GameObject enemyWeapon;
+    protected Rigidbody2D enemyRb;
+    protected SpriteRenderer enemySprite;
+    protected SpriteRenderer enemyWeaponSprite;
     
-
-    private PlayerController player;
-    private bool followsPlayer;
-    private bool randomChosen;
-    private bool isFighting;
-    private float timePassed;
-    private float rndX;
-    private float rndY;
-    private Vector2 moveVec;
-    private float moveVecLength;
+    
+    protected bool followsPlayer;
+    protected bool randomChosen;
+    protected bool isFighting;
+    protected float timePassed;
+    protected float rndX;
+    protected float rndY;
+    protected Vector2 moveVec;
+    protected float moveVecLength;
 
 
 
@@ -35,13 +36,12 @@ public class EnemyBehavior : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<PlayerController>().GetComponent<PlayerController>();
         enemyWeaponSprite = enemyWeapon.GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        moveVec = player.transform.position - transform.position;
+        moveVec = GameManager.Instance.player.transform.position - transform.position;
         moveVecLength = moveVec.magnitude;
 
         timePassed += Time.deltaTime;
@@ -110,13 +110,13 @@ public class EnemyBehavior : MonoBehaviour
 
     private void RangeDetection()
     {
-        if (moveVecLength <= 4f && moveVecLength >= 1.5f)
+        if (moveVecLength <= detectionRange && moveVecLength >= fightRange)
         {
             enemyRb.velocity = moveVec * chaseSpeed * Time.deltaTime;
             followsPlayer = true;
             isFighting = false;
         }
-        else if (moveVecLength < 1.5f)
+        else if (moveVecLength < fightRange)
         {
             enemyRb.velocity = Vector2.zero;
             followsPlayer = false;
@@ -133,7 +133,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         if(timePassed > weaponCooldown)
         {
-            player.healthPoints -= weaponDamage;
+            GameManager.Instance.player.healthPoints -= weaponDamage;
             timePassed = 0;
         }
     }
