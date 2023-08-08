@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public float weaponDamage;
     public float weaponCooldown;
     [SerializeField] private GameObject playerWeapon;
-    [SerializeField] private GameObject playerCanvas;
+    public GameObject playerCanvas;
     private Rigidbody2D playerRb;
 
     private EnemyBehavior enemyFought;

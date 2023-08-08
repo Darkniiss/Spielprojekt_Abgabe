@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
     public static GameManager Instance { get; private set; }
     public PlayerController player { get;private set; }
+    public int currentFloor;
+    public int money;
 
     private void Awake()
     {
@@ -27,6 +30,15 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4))
+        {
+            player.playerCanvas.SetActive(true);
+        }
+        else if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(4))
+        {
+            player.playerCanvas.SetActive(false);
+        }
 
+       
     }
 }

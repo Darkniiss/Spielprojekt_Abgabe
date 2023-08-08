@@ -143,6 +143,10 @@ PrefabInstance:
       value: Berserker
       objectReference: {fileID: 0}
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_TagString
       value: Interactable
       objectReference: {fileID: 0}
@@ -953,6 +957,10 @@ PrefabInstance:
       value: Knight
       objectReference: {fileID: 0}
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_TagString
       value: Interactable
       objectReference: {fileID: 0}
@@ -1056,6 +1064,10 @@ PrefabInstance:
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_Name
       value: DoubleAxe
+      objectReference: {fileID: 0}
+    - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_TagString
@@ -2384,6 +2396,10 @@ PrefabInstance:
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_Name
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 652355419269487017, guid: 7ee81b2583fe08a4580374d3e1a9dc4d, type: 3}
       propertyPath: m_TagString

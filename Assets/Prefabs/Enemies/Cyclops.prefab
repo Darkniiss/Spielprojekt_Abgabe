@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 448471182112620922}
+  - component: {fileID: 5137638384671603746}
   - component: {fileID: 448471182112620923}
   - component: {fileID: 448471182112620920}
   - component: {fileID: 4349321774160296138}
-  - component: {fileID: 5137638384671603746}
   m_Layer: 7
   m_Name: Cyclops
   m_TagString: Enemy
@@ -37,6 +37,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5137638384671603746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448471182112620916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a4e428182f79e4a94633f235ea96a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseSpeed: 0
+  idleSpeed: 0
+  weaponDamage: 0
+  weaponCooldown: 0
+  detectionRange: 0
+  fightRange: 0
+  healthPoints: 10
+  enemyWeapon: {fileID: 4441109200371496492}
 --- !u!212 &448471182112620923
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -136,26 +156,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5137638384671603746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448471182112620916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16a4e428182f79e4a94633f235ea96a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chaseSpeed: 0
-  idleSpeed: 0
-  weaponDamage: 0
-  weaponCooldown: 0
-  detectionRange: 0
-  fightRange: 0
-  healthPoints: 0
-  enemyWeapon: {fileID: 4441109200371496492}
 --- !u!1 &2360102967007025375
 GameObject:
   m_ObjectHideFlags: 0

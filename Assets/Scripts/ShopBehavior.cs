@@ -12,13 +12,13 @@ public class ShopBehavior : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (gameObject.CompareTag("Weapon"))
+        if (gameObject.layer == 9)
         {
             GameManager.Instance.player.weaponDamage = weaponDamage;
             GameManager.Instance.player.weaponCooldown = weaponCooldown;
             GameManager.Instance.player.playerWeaponSprite.sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
         }
-        else if (gameObject.CompareTag("Class"))
+        else if (gameObject.layer == 10)
         {
             GameManager.Instance.player.moveSpeed = classMoveSpeed;
             GameManager.Instance.player.healthPoints = classHealthpoints;
