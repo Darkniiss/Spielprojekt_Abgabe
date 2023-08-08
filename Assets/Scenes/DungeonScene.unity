@@ -3005,6 +3005,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2086597690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3983317775213930024, guid: fd7c3a3d42e2a7c47a6c252573f0ca15, type: 3}
+  m_PrefabInstance: {fileID: 8516960705552805701}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2086597691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086597690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a4e428182f79e4a94633f235ea96a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseSpeed: 0
+  idleSpeed: 0
+  weaponDamage: 0
+  weaponCooldown: 0
+  detectionRange: 0
+  fightRange: 0
+  healthPoints: 0
+  enemyWeapon: {fileID: 0}
 --- !u!1001 &8516960705552805701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3080,5 +3105,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3983317775213930021, guid: fd7c3a3d42e2a7c47a6c252573f0ca15, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fd7c3a3d42e2a7c47a6c252573f0ca15, type: 3}
