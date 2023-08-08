@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer playerSprite;
     public SpriteRenderer playerWeaponSprite;
     public IInteractable interactable;
+
     
 
     private Vector2 moveVec;
@@ -93,13 +94,15 @@ public class PlayerController : MonoBehaviour
         {
             interactable.Interact();
         }
+    }
 
-
-       
-
-
-
-
+    public void Flee(InputAction.CallbackContext context)
+    {
+        if( context.duration > 5 && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4))
+        {
+            SceneManager.LoadScene(2);
+            transform.position = new Vector2(5f, -5.5f);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
