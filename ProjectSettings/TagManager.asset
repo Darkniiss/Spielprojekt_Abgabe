@@ -5,12 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Weapon
-  - Class
-  - Healing
   - Door
-  - ShopItem
   - Interactable
+  - Pickupable
   layers:
   - Default
   - TransparentFX
@@ -23,7 +20,7 @@ TagManager:
   - Walls
   - Weapon
   - Class
-  - 
+  - Coin
   - 
   - 
   - 

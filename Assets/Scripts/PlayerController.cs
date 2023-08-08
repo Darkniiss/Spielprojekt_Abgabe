@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer playerSprite;
     public SpriteRenderer playerWeaponSprite;
     public IInteractable interactable;
+    public IPickup pickup;
 
     
 
@@ -116,6 +117,11 @@ public class PlayerController : MonoBehaviour
         else if(collision.gameObject.CompareTag("Interactable")) 
         {
             interactable = collision.gameObject.GetComponent<IInteractable>();
+        }
+        else if (collision.gameObject.CompareTag("Pickupable"))
+        {
+            pickup = collision.gameObject.GetComponent<IPickup>();
+            pickup.PickupItem();
         }
         
 

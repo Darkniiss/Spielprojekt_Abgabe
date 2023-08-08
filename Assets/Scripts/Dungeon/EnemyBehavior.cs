@@ -4,14 +4,16 @@ using UnityEngine;
 
 public abstract class EnemyBehavior : MonoBehaviour
 {
+    public float healthPoints;
     [SerializeField] protected float chaseSpeed;
     [SerializeField] protected float idleSpeed;
     [SerializeField] protected float weaponDamage;
     [SerializeField] protected float weaponCooldown;
     [SerializeField] protected float detectionRange;
     [SerializeField] protected float fightRange;
-    public float healthPoints;
+    [SerializeField] protected float coinsDropped;
     [SerializeField] protected GameObject enemyWeapon;
+    [SerializeField] protected GameObject coinPrefab;
     protected Rigidbody2D enemyRb;
     protected SpriteRenderer enemySprite;
     protected SpriteRenderer enemyWeaponSprite;
@@ -62,6 +64,7 @@ public abstract class EnemyBehavior : MonoBehaviour
 
         if(healthPoints <= 0)
         {
+            Instantiate(coinPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
 

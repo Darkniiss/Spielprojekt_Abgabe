@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public PlayerController player { get;private set; }
     public int currentFloor;
-    public int money;
 
     private void Awake()
     {
@@ -39,6 +38,11 @@ public class GameManager : MonoBehaviour
             player.playerCanvas.SetActive(false);
         }
 
-       
+       if(player.healthPoints <= 0)
+        {
+            SceneManager.LoadScene(1);
+            player.transform.position = new Vector2(2, 0);
+            InventoryManager.Instance.coins /= 2;
+        }
     }
 }
