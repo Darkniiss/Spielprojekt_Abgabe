@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public PlayerController player { get;private set; }
     public int currentFloor;
+    public bool isPaused;
 
     private void Awake()
     {

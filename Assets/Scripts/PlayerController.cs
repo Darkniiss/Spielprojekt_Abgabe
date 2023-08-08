@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.Instance.isPaused)
+        {
+
         timePassed += Time.deltaTime;
 
         playerRb.velocity = (moveVec * moveSpeed * Time.deltaTime);
@@ -53,6 +56,7 @@ public class PlayerController : MonoBehaviour
 
 
         FlipSprite();
+        }
     }
 
     public void FlipSprite()
@@ -77,12 +81,16 @@ public class PlayerController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if(!GameManager.Instance.isPaused)
+        {
+
         moveVec = context.ReadValue<Vector2>();
+        }
     }
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (timePassed > weaponCooldown && isFighting)
+        if (timePassed > weaponCooldown && isFighting && !GameManager.Instance.isPaused)
         {
             enemyFought.healthPoints -= weaponDamage;
             timePassed = 0;
@@ -91,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if(interactable != null && context.performed)
+        if(interactable != null && context.performed && !GameManager.Instance.isPaused)
         {
             interactable.Interact();
         }
@@ -99,10 +107,30 @@ public class PlayerController : MonoBehaviour
 
     public void Flee(InputAction.CallbackContext context)
     {
-        if( context.duration > 5 && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4))
+        if( context.duration > 5 && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4) && !GameManager.Instance.isPaused)
         {
             SceneManager.LoadScene(2);
             transform.position = new Vector2(5f, -5.5f);
+        }
+    }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (!GameManager.Instance.isPaused)
+            {
+                GameUIHandler.Instance.pauseMenu.SetActive(true);
+                GameUIHandler.Instance.menu.SetActive(true);
+                GameUIHandler.Instance.optionsMenu.SetActive(false);
+                GameUIHandler.Instance.SetStartObject();
+                GameManager.Instance.isPaused = true;
+            }
+            else if (GameManager.Instance.isPaused)
+            {
+                GameUIHandler.Instance.pauseMenu.SetActive(false);
+                GameManager.Instance.isPaused = false;
+            }
         }
     }
 
