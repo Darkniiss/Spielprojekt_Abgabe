@@ -31,11 +31,11 @@ public class GameManager : MonoBehaviour
     {
         if(SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4))
         {
-            player.playerCanvas.SetActive(true);
+            player.healthBar.SetActive(true);
         }
         else if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(4))
         {
-            player.playerCanvas.SetActive(false);
+            player.healthBar.SetActive(false);
         }
 
        if(player.healthPoints <= 0)
