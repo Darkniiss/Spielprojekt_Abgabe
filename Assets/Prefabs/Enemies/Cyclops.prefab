@@ -49,14 +49,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a4e428182f79e4a94633f235ea96a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 10
-  chaseSpeed: 0
-  idleSpeed: 0
-  weaponDamage: 0
-  weaponCooldown: 0
-  detectionRange: 0
-  fightRange: 0
-  coinsDropped: 0
+  healthPoints: 15
+  chaseSpeed: 15
+  idleSpeed: 100
+  weaponDamage: 1
+  weaponCooldown: 1.5
+  detectionRange: 2
+  fightRange: 1.5
   enemyWeapon: {fileID: 4441109200371496492}
   coinPrefab: {fileID: 3118725753256969484, guid: f5f491ba3201b8346a0d8e25bf9d7c94, type: 3}
   weaponSounds:

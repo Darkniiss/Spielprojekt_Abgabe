@@ -194,8 +194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c6b8b119548074dab95fe6c393b2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 175
-  healthPoints: 10
+  moveSpeed: 100
+  maxHealthPoints: 10
+  currentHealthPoints: 0
   weaponDamage: 0
   weaponCooldown: 0
   playerWeapon: {fileID: 823742667}

@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
-    public float healthPoints;
+    public float maxHealthPoints;
+    public float currentHealthPoints;
     public float weaponDamage;
     public float weaponCooldown;
     [SerializeField] private GameObject playerWeapon;
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-
+        currentHealthPoints = maxHealthPoints;
         playerWeaponSprite = playerWeapon.GetComponent<SpriteRenderer>();
     }
 

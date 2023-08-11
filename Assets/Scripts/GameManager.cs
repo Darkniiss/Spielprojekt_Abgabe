@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public PlayerController player { get;private set; }
     public int currentFloor;
     public bool isPaused;
+    public bool openedChest;
 
     private void Awake()
     {
@@ -39,9 +40,11 @@ public class GameManager : MonoBehaviour
             player.healthBar.SetActive(false);
         }
 
-       if(player.healthPoints <= 0)
+       if(player.currentHealthPoints <= 0)
         {
             SceneManager.LoadScene(1);
+            player.currentHealthPoints = player.maxHealthPoints;
+            currentFloor = 0;
             player.transform.position = new Vector2(2, 0);
             InventoryManager.Instance.coins /= 2;
         }

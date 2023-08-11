@@ -11,11 +11,11 @@ public class HealthSystemPlayer : MonoBehaviour
     void Start()
     {
         player = GetComponentInParent<PlayerController>();
-        healthSlider.maxValue = player.healthPoints;
     }
 
     void Update()
     {
-        healthSlider.value = player.healthPoints;
+        healthSlider.maxValue = player.maxHealthPoints;
+        healthSlider.value = player.currentHealthPoints;
     }
 }

@@ -11,7 +11,6 @@ public abstract class EnemyBehavior : MonoBehaviour
     [SerializeField] protected float weaponCooldown;
     [SerializeField] protected float detectionRange;
     [SerializeField] protected float fightRange;
-    [SerializeField] protected float coinsDropped;
     [SerializeField] protected GameObject enemyWeapon;
     [SerializeField] protected GameObject coinPrefab;
     [SerializeField] protected List<AudioClip> weaponSounds;
@@ -142,7 +141,7 @@ public abstract class EnemyBehavior : MonoBehaviour
     {
         if(timePassed > weaponCooldown)
         {
-            GameManager.Instance.player.healthPoints -= weaponDamage;
+            GameManager.Instance.player.currentHealthPoints -= weaponDamage;
             timePassed = 0;
         }
     }

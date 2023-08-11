@@ -5,7 +5,12 @@ using UnityEngine;
 public class PickupBehavior : MonoBehaviour, IPickup
 {
     private AudioSource pickupAudio;
-    [SerializeField] private AudioClip pickupSound;
+
+    private void Start()
+    {
+        pickupAudio = GetComponent<AudioSource>();
+    }
+
     public void PickupItem()
     {
         if(gameObject.layer == 11)
@@ -16,7 +21,11 @@ public class PickupBehavior : MonoBehaviour, IPickup
         //{
         //    InventoryManager.Instance.healthPotions++;
         //}
-        pickupAudio.PlayOneShot(pickupSound);
-        Destroy(gameObject);
+        pickupAudio.Play();
+        
+
+        Destroy(gameObject, 0.1f);
+        
+        
     }
 }
