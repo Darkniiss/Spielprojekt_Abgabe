@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float weaponDamage;
     public float weaponCooldown;
     [SerializeField] private GameObject playerWeapon;
+    private AudioSource playerAudio;
+    [SerializeField] private List<AudioClip> weaponSounds;
     public GameObject healthBar;
     private Rigidbody2D playerRb;
 
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
 
         playerRb = GetComponent<Rigidbody2D>();
+        playerAudio = GetComponent<AudioSource>();
         playerSprite = GetComponent<SpriteRenderer>();
     }
 
@@ -90,8 +93,9 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (timePassed > weaponCooldown && isFighting && !GameManager.Instance.isPaused)
+        if (timePassed > weaponCooldown && isFighting && !GameManager.Instance.isPaused && context.performed)
         {
+            PlayWeaponSound();
             enemyFought.healthPoints -= weaponDamage;
             timePassed = 0;
         }
@@ -180,5 +184,11 @@ public class PlayerController : MonoBehaviour
             isFighting = false;
         }
 
+    }
+
+    private void PlayWeaponSound()
+    {
+        int rndIndex = Random.Range(0, weaponSounds.Count);
+        playerAudio.PlayOneShot(weaponSounds[rndIndex]);
     }
 }

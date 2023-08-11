@@ -59,6 +59,8 @@ MonoBehaviour:
   coinsDropped: 0
   enemyWeapon: {fileID: 3559202141638206790}
   coinPrefab: {fileID: 3118725753256969484, guid: f5f491ba3201b8346a0d8e25bf9d7c94, type: 3}
+  weaponSounds:
+  - {fileID: 8300000, guid: cc6699269b4c1d44ea1e860518b9bb73, type: 3}
 --- !u!212 &791617713937682961
 SpriteRenderer:
   m_ObjectHideFlags: 0

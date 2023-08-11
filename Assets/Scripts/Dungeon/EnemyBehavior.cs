@@ -14,7 +14,9 @@ public abstract class EnemyBehavior : MonoBehaviour
     [SerializeField] protected float coinsDropped;
     [SerializeField] protected GameObject enemyWeapon;
     [SerializeField] protected GameObject coinPrefab;
+    [SerializeField] protected List<AudioClip> weaponSounds;
     protected Rigidbody2D enemyRb;
+    protected AudioSource enemyAudio;
     protected SpriteRenderer enemySprite;
     protected SpriteRenderer enemyWeaponSprite;
     
@@ -145,4 +147,9 @@ public abstract class EnemyBehavior : MonoBehaviour
         }
     }
 
+    private void PlayWeaponSound()
+    {
+        int rndIndex = Random.Range(0, weaponSounds.Count);
+        enemyAudio.PlayOneShot(weaponSounds[rndIndex]);
+    }
 }

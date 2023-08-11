@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class GameUIHandler : MonoBehaviour
 {
@@ -42,7 +43,11 @@ public class GameUIHandler : MonoBehaviour
 
     public void BackToMenu()
     {
-        //OPEN MENU SCENE!!!!!
+        SceneManager.LoadScene("MenuScene");
+        Destroy(GameManager.Instance.player.gameObject);
+        Destroy(GameManager.Instance.gameObject);
+        Destroy(GameUIHandler.Instance.gameObject);
+        Destroy(InventoryManager.Instance.gameObject);
     }
 
     public void SetStartObject()
