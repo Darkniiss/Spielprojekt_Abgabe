@@ -13,19 +13,19 @@ public class PickupBehavior : MonoBehaviour, IPickup
 
     public void PickupItem()
     {
-        if(gameObject.layer == 11)
+        pickupAudio.Play();
+        if (gameObject.layer == 11)
         {
-            InventoryManager.Instance.coins++;
+            Destroy(gameObject);
+            GameManager.Instance.inventory.coins++;
         }
         //else if(gameObject.name == "HealthPotion")
         //{
         //    InventoryManager.Instance.healthPotions++;
         //}
-        pickupAudio.Play();
-        
 
-        Destroy(gameObject, 0.1f);
-        
-        
+
+
+
     }
 }

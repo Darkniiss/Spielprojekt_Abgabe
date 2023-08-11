@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponDamage: 0
   weaponCooldown: 0
-  classMoveSpeed: 75
+  classMoveSpeed: 100
   classHealthpoints: 20
 --- !u!212 &7119009525118629058
 SpriteRenderer:

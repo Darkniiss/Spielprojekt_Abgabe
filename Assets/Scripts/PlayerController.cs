@@ -24,12 +24,12 @@ public class PlayerController : MonoBehaviour
     public IInteractable interactable;
     public IPickup pickup;
 
-    
+
 
     private Vector2 moveVec;
     private float timePassed;
 
-    
+
     private bool isFighting;
 
 
@@ -53,13 +53,13 @@ public class PlayerController : MonoBehaviour
         if (!GameManager.Instance.isPaused)
         {
 
-        timePassed += Time.deltaTime;
+            timePassed += Time.deltaTime;
 
-        playerRb.velocity = (moveVec * moveSpeed * Time.deltaTime);
+            playerRb.velocity = (moveVec * moveSpeed * Time.deltaTime);
 
 
 
-        FlipSprite();
+            FlipSprite();
         }
     }
 
@@ -85,10 +85,10 @@ public class PlayerController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if(!GameManager.Instance.isPaused)
+        if (!GameManager.Instance.isPaused)
         {
 
-        moveVec = context.ReadValue<Vector2>();
+            moveVec = context.ReadValue<Vector2>();
         }
     }
 
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if(interactable != null && context.performed && !GameManager.Instance.isPaused)
+        if (interactable != null && context.performed && !GameManager.Instance.isPaused)
         {
             interactable.Interact();
         }
@@ -112,10 +112,20 @@ public class PlayerController : MonoBehaviour
 
     public void Flee(InputAction.CallbackContext context)
     {
-        if( context.duration > 5 && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4) && !GameManager.Instance.isPaused)
+        if (context.duration > 3 && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4) && !GameManager.Instance.isPaused)
         {
             SceneManager.LoadScene(2);
+            GameManager.Instance.currentFloor = 0;
             transform.position = new Vector2(5f, -5.5f);
+        }
+    }
+
+    public void UseHealthPotion(InputAction.CallbackContext context)
+    {
+        if (context.performed && GameManager.Instance.inventory.healthPotions >= 1)
+        {
+            currentHealthPoints += 5;
+            GameManager.Instance.inventory.healthPotions--;
         }
     }
 
@@ -125,15 +135,15 @@ public class PlayerController : MonoBehaviour
         {
             if (!GameManager.Instance.isPaused)
             {
-                GameUIHandler.Instance.pauseMenu.SetActive(true);
-                GameUIHandler.Instance.menu.SetActive(true);
-                GameUIHandler.Instance.optionsMenu.SetActive(false);
-                GameUIHandler.Instance.SetStartObject();
+                GameManager.Instance.gameUI.pauseMenu.SetActive(true);
+                GameManager.Instance.gameUI.menu.SetActive(true);
+                GameManager.Instance.gameUI.optionsMenu.SetActive(false);
+                GameManager.Instance.gameUI.SetStartObject();
                 GameManager.Instance.isPaused = true;
             }
             else if (GameManager.Instance.isPaused)
             {
-                GameUIHandler.Instance.pauseMenu.SetActive(false);
+                GameManager.Instance.gameUI.pauseMenu.SetActive(false);
                 GameManager.Instance.isPaused = false;
             }
         }
@@ -147,7 +157,7 @@ public class PlayerController : MonoBehaviour
             isFighting = true;
 
         }
-        else if(collision.gameObject.CompareTag("Interactable")) 
+        else if (collision.gameObject.CompareTag("Interactable"))
         {
             interactable = collision.gameObject.GetComponent<IInteractable>();
         }
@@ -156,15 +166,15 @@ public class PlayerController : MonoBehaviour
             pickup = collision.gameObject.GetComponent<IPickup>();
             pickup.PickupItem();
         }
-        
+
 
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(interactable == null)
+        if (interactable == null)
         {
-           if (collision.gameObject.CompareTag("Interactable"))
+            if (collision.gameObject.CompareTag("Interactable"))
             {
                 interactable = collision.gameObject.GetComponent<IInteractable>();
             }

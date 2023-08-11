@@ -16,23 +16,13 @@ public class GameUIHandler : MonoBehaviour
     public GameObject menu;
     public GameObject optionsMenu;
     public GameObject pauseMenu;
-    public static GameUIHandler Instance { get; private set; }
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(this);
-    }
+
 
     void Update()
     {
-        coinText.text = InventoryManager.Instance.coins.ToString();
+        coinText.text = GameManager.Instance.inventory.coins.ToString();
 
-        healthPotionText.text = InventoryManager.Instance.healthPotions.ToString();
+        healthPotionText.text = GameManager.Instance.inventory.healthPotions.ToString();
     }
 
     public void OpenOptionsMenu()
@@ -46,8 +36,8 @@ public class GameUIHandler : MonoBehaviour
         SceneManager.LoadScene("MenuScene");
         Destroy(GameManager.Instance.player.gameObject);
         Destroy(GameManager.Instance.gameObject);
-        Destroy(GameUIHandler.Instance.gameObject);
-        Destroy(InventoryManager.Instance.gameObject);
+        Destroy(GameManager.Instance.gameUI.gameObject);
+        Destroy(GameManager.Instance.inventory.gameObject);
     }
 
     public void SetStartObject()

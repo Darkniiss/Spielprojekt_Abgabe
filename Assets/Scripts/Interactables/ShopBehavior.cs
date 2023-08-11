@@ -12,7 +12,7 @@ public class ShopBehavior : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (gameObject.layer == 9 && InventoryManager.Instance.coins >= 2)
+        if (gameObject.layer == 9 && GameManager.Instance.inventory.coins >= 2)
         {
             if(GameManager.Instance.player.playerWeaponSprite.sprite != gameObject.GetComponent<SpriteRenderer>().sprite)
             {
@@ -26,9 +26,9 @@ public class ShopBehavior : MonoBehaviour, IInteractable
                 GameManager.Instance.player.weaponDamage += weaponDamage;
             }
 
-            InventoryManager.Instance.coins -= 2;
+            GameManager.Instance.inventory.coins -= 2;
         }
-        else if (gameObject.layer == 10 && InventoryManager.Instance.coins >= 2)
+        else if (gameObject.layer == 10 && GameManager.Instance.inventory.coins >= 2)
         {
             if(GameManager.Instance.player.playerSprite.sprite != gameObject.GetComponent<SpriteRenderer>().sprite)
             {
@@ -41,8 +41,13 @@ public class ShopBehavior : MonoBehaviour, IInteractable
             {
                 GameManager.Instance.player.maxHealthPoints += (classHealthpoints/2);
             }
-            
-            InventoryManager.Instance.coins -= 2;
+
+            GameManager.Instance.inventory.coins -= 2;
+        }
+        else if(gameObject.layer == 12 && GameManager.Instance.inventory.coins >= 1)
+        {
+            GameManager.Instance.inventory.healthPotions++;
+            GameManager.Instance.inventory.coins -= 1;
         }
     }
 }

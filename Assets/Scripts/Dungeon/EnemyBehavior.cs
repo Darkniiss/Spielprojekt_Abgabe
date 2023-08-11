@@ -18,8 +18,8 @@ public abstract class EnemyBehavior : MonoBehaviour
     protected AudioSource enemyAudio;
     protected SpriteRenderer enemySprite;
     protected SpriteRenderer enemyWeaponSprite;
-    
-    
+
+
     protected bool followsPlayer;
     protected bool randomChosen;
     protected bool isFighting;
@@ -34,6 +34,7 @@ public abstract class EnemyBehavior : MonoBehaviour
     private void Awake()
     {
         enemyRb = GetComponent<Rigidbody2D>();
+        enemyAudio = GetComponent<AudioSource>();
         enemySprite = GetComponent<SpriteRenderer>();
     }
 
@@ -44,33 +45,33 @@ public abstract class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-        if(!GameManager.Instance.isPaused)
+        if (!GameManager.Instance.isPaused)
         {
 
-        moveVec = GameManager.Instance.player.transform.position - transform.position;
-        moveVecLength = moveVec.magnitude;
+            moveVec = GameManager.Instance.player.transform.position - transform.position;
+            moveVecLength = moveVec.magnitude;
 
-        timePassed += Time.deltaTime;
+            timePassed += Time.deltaTime;
 
-        RangeDetection();
+            RangeDetection();
 
 
-        FlipSprite();
+            FlipSprite();
 
-        if (!followsPlayer && !isFighting)
-        {
-        IdleMovement();
-        }
-        else if(isFighting)
-        {
-            Attack();
-        }
+            if (!followsPlayer && !isFighting)
+            {
+                IdleMovement();
+            }
+            else if (isFighting)
+            {
+                Attack();
+            }
 
-        if(healthPoints <= 0)
-        {
-            Instantiate(coinPrefab, transform.position, transform.rotation);
-            Destroy(gameObject);
-        }
+            if (healthPoints <= 0)
+            {
+                Instantiate(coinPrefab, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
         }
 
     }
@@ -113,7 +114,7 @@ public abstract class EnemyBehavior : MonoBehaviour
         {
             enemyRb.velocity = new Vector2(rndX, rndY) * idleSpeed * Time.deltaTime;
         }
-        
+
     }
 
     private void RangeDetection()
@@ -139,8 +140,9 @@ public abstract class EnemyBehavior : MonoBehaviour
 
     private void Attack()
     {
-        if(timePassed > weaponCooldown)
+        if (timePassed > weaponCooldown)
         {
+            PlayWeaponSound();
             GameManager.Instance.player.currentHealthPoints -= weaponDamage;
             timePassed = 0;
         }

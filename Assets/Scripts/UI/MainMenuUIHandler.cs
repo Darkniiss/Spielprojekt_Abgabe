@@ -35,5 +35,5 @@ public class MainMenuUIHandler : MonoBehaviour
     {
         eventSystem.SetSelectedGameObject(selectedObject);
     }
-    
+
 }

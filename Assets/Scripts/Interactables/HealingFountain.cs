@@ -6,6 +6,6 @@ public class HealingFountain : MonoBehaviour, IInteractable
 {
     public void Interact()
     {
-        GameManager.Instance.player.currentHealthPoints = GameManager.Instance.player.currentHealthPoints;
+        GameManager.Instance.player.currentHealthPoints = GameManager.Instance.player.maxHealthPoints;
     }
 }
