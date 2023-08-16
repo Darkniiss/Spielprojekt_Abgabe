@@ -9,7 +9,6 @@ public class ChestBehavior : MonoBehaviour, IInteractable
     [SerializeField] private float weaponCooldown;
     [SerializeField] private Sprite openedChestSprite;
     private SpriteRenderer chestSprite;
-    private static bool chestOpened;
 
     private void Start()
     {
@@ -18,13 +17,13 @@ public class ChestBehavior : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (!chestOpened)
+        if (!GameManager.Instance.openedChest)
         {
 
         GameManager.Instance.player.weaponCooldown = weaponCooldown;
         GameManager.Instance.player.weaponDamage = weaponDamage;
         GameManager.Instance.player.playerWeaponSprite.sprite = itemSprite;
-            chestOpened = true;
+            GameManager.Instance.openedChest = true;
             chestSprite.sprite = openedChestSprite;
         }
     }

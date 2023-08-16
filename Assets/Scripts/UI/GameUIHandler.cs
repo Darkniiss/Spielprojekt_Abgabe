@@ -12,12 +12,17 @@ public class GameUIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private TextMeshProUGUI healthPotionText;
     [SerializeField] private GameObject selectedObject;
+    private GameObject currentObject;
 
     public EventSystem eventSystem;
     public GameObject menu;
     public GameObject optionsMenu;
     public GameObject pauseMenu;
 
+    private void Start()
+    {
+        currentObject = eventSystem.currentSelectedGameObject;
+    }
 
     void Update()
     {
@@ -25,11 +30,11 @@ public class GameUIHandler : MonoBehaviour
 
         healthPotionText.text = GameManager.Instance.inventory.healthPotions.ToString();
 
-        if (eventSystem.currentSelectedGameObject == null && Gamepad.current != null)
+        if (currentObject == null && Gamepad.current != null && menu.gameObject.activeSelf)
         {
             
                 eventSystem.SetSelectedGameObject(selectedObject);
-            
+            currentObject = eventSystem.currentSelectedGameObject;
             
             
         }
@@ -39,6 +44,7 @@ public class GameUIHandler : MonoBehaviour
     {
         menu.SetActive(false);
         optionsMenu.SetActive(true);
+        currentObject = null;
     }
 
     public void BackToMenu()

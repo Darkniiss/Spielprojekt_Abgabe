@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (timePassed > weaponCooldown && isFighting && !GameManager.Instance.isPaused && context.performed)
+        if (timePassed > weaponCooldown && isFighting && !GameManager.Instance.isPaused && context.started)
         {
             PlayWeaponSound();
             enemyFought.healthPoints -= weaponDamage;
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if (interactable != null && context.performed && !GameManager.Instance.isPaused)
+        if (interactable != null && context.started && !GameManager.Instance.isPaused)
         {
             interactable.Interact();
         }
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
 
     public void Flee(InputAction.CallbackContext context)
     {
-        if (context.duration > 3 && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4) && !GameManager.Instance.isPaused)
+        if (context.duration > 2 && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4) && !GameManager.Instance.isPaused)
         {
             SceneManager.LoadScene(2);
             GameManager.Instance.currentFloor = 0;
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
     public void UseHealthPotion(InputAction.CallbackContext context)
     {
-        if (context.performed && GameManager.Instance.inventory.healthPotions >= 1)
+        if (context.started && GameManager.Instance.inventory.healthPotions >= 1)
         {
             currentHealthPoints += 5;
             GameManager.Instance.inventory.healthPotions--;
@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
     public void Pause(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started)
         {
             if (!GameManager.Instance.isPaused)
             {
