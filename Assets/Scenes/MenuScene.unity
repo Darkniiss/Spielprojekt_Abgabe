@@ -3013,7 +3013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 848665619}
   optionsMenu: {fileID: 1602779919}
-  selectedObject: {fileID: 288787794}
+  selectedObject: {fileID: 327888678}
   eventSystem: {fileID: 2113568004}
 --- !u!114 &823930598
 MonoBehaviour:
@@ -3029,7 +3029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 848665619}
   optionsMenu: {fileID: 1602779919}
-  selectedObject: {fileID: 327888678}
+  selectedObject: {fileID: 288787794}
   mainMixer: {fileID: 24100000, guid: db1b6f5144a86d94687b9183f67c3638, type: 2}
   resolutionDropdown: {fileID: 276175710}
   eventSystem: {fileID: 2113568004}
@@ -6566,7 +6566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 327888678}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &2113568005

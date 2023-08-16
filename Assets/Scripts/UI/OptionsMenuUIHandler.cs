@@ -15,6 +15,7 @@ public class OptionsMenuUIHandler : MonoBehaviour
     [SerializeField] private AudioMixer mainMixer;
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private EventSystem eventSystem;
+    public GameObject test;
 
     private Resolution[] resolutions;
 
@@ -40,6 +41,16 @@ public class OptionsMenuUIHandler : MonoBehaviour
         resolutionDropdown.AddOptions(resOptions);
         resolutionDropdown.value = curResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+    }
+
+    private void Update()
+    {
+        if(eventSystem.currentSelectedGameObject == null && Gamepad.current != null)
+        {
+          
+                eventSystem.SetSelectedGameObject(selectedObject);
+          
+        }
     }
 
     public void BackToMenu()
@@ -68,9 +79,5 @@ public class OptionsMenuUIHandler : MonoBehaviour
         Screen.SetResolution(resolutions[_resolution].width, resolutions[_resolution].height, Screen.fullScreen);
     }
 
-    public void SetSelectedObject()
-    {
-        
-        eventSystem.SetSelectedGameObject(selectedObject);
-    }
+    
 }
