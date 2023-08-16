@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public PlayerController player { get; private set; }
     public InventoryManager inventory { get; private set; }
     public GameUIHandler gameUI { get; private set; }
+    public SoundManager soundManager { get; private set; }
     public int currentFloor;
     public bool isPaused;
     public bool openedChest;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
         player = Instantiate(playerPrefab, Vector2.zero, playerPrefab.transform.rotation).GetComponent<PlayerController>();
         inventory = GetComponentInChildren<InventoryManager>();
         gameUI = GetComponentInChildren<GameUIHandler>();
+        soundManager = GetComponentInChildren<SoundManager>();
     }
 
     void Update()

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class OptionsMenuUIHandler : MonoBehaviour
@@ -69,6 +70,7 @@ public class OptionsMenuUIHandler : MonoBehaviour
 
     public void SetSelectedObject()
     {
+        
         eventSystem.SetSelectedGameObject(selectedObject);
     }
 }

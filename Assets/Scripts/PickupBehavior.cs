@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class PickupBehavior : MonoBehaviour, IPickup
 {
-    private AudioSource pickupAudio;
-
+    [SerializeField] private AudioClip coinSound;
     private void Start()
     {
-        pickupAudio = GetComponent<AudioSource>();
     }
 
     public void PickupItem()
     {
-        pickupAudio.Play();
+        GameManager.Instance.soundManager.PlaySound(coinSound);
         if (gameObject.layer == 11)
         {
             Destroy(gameObject);
