@@ -12,11 +12,14 @@ public class OptionsMenuUIHandler : MonoBehaviour
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject controlsMenu;
-    [SerializeField] private GameObject selectedObject;
+    [SerializeField] private GameObject selectedObjectOptions;
+    [SerializeField] private GameObject selectedObjectControls;
     [SerializeField] private AudioMixer mainMixer;
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private EventSystem eventSystem;
-    private GameObject currentObject;
+    public GameObject currentObject;
+
+    private static bool resolutionSet;
 
     private Resolution[] resolutions;
 
@@ -40,7 +43,12 @@ public class OptionsMenuUIHandler : MonoBehaviour
         }
 
         resolutionDropdown.AddOptions(resOptions);
-        //resolutionDropdown.value = curResolutionIndex;
+        if (!resolutionSet)
+        {
+
+            resolutionDropdown.value = curResolutionIndex;
+            resolutionSet = true;
+        }
         resolutionDropdown.RefreshShownValue();
     }
 
@@ -49,9 +57,14 @@ public class OptionsMenuUIHandler : MonoBehaviour
         if (currentObject == null && Gamepad.current != null && optionsMenu.gameObject.activeSelf)
         {
 
-            eventSystem.SetSelectedGameObject(selectedObject);
+            eventSystem.SetSelectedGameObject(selectedObjectOptions);
             currentObject = eventSystem.currentSelectedGameObject;
 
+        }
+        else if(currentObject == null && Gamepad.current != null && controlsMenu.gameObject.activeSelf)
+        {
+            eventSystem.SetSelectedGameObject(selectedObjectControls);
+            currentObject = eventSystem.currentSelectedGameObject;
         }
     }
 
@@ -59,11 +72,11 @@ public class OptionsMenuUIHandler : MonoBehaviour
     {
         menu.SetActive(true);
         optionsMenu.SetActive(false);
-        controlsMenu.SetActive(false );
+        controlsMenu.SetActive(false);
         currentObject = null;
     }
 
-    
+
 
     public void SetVolume(float _volume)
     {

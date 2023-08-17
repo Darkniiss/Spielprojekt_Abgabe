@@ -9,6 +9,7 @@ public class MainMenuUIHandler : MonoBehaviour
 {
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject controlsMenu;
     [SerializeField] private GameObject selectedObject;
     [SerializeField] private EventSystem eventSystem;
     private GameObject currentObject;
@@ -37,7 +38,12 @@ public class MainMenuUIHandler : MonoBehaviour
         currentObject = null;
     }
 
-    
+    public void OpenControlsMenu()
+    {
+        menu.SetActive(false);
+        controlsMenu.SetActive(true);
+        currentObject = null;
+    }
 
     public void ExitGame()
     {

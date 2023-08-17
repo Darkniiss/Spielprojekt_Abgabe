@@ -1994,7 +1994,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 1931234806}
+    m_SelectOnUp: {fileID: 1793434303}
     m_SelectOnDown: {fileID: 1931234806}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -7050,10 +7050,12 @@ MonoBehaviour:
   menu: {fileID: 1078564539}
   optionsMenu: {fileID: 563350078}
   controlsMenu: {fileID: 627013280}
-  selectedObject: {fileID: 307074111}
+  selectedObjectOptions: {fileID: 307074111}
+  selectedObjectControls: {fileID: 1960154767}
   mainMixer: {fileID: 24100000, guid: db1b6f5144a86d94687b9183f67c3638, type: 2}
   resolutionDropdown: {fileID: 974770382}
   eventSystem: {fileID: 374750819}
+  currentObject: {fileID: 0}
 --- !u!114 &1627925129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7477,7 +7479,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 324070651}
+    m_SelectOnUp: {fileID: 1931234806}
     m_SelectOnDown: {fileID: 324070651}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -7840,7 +7842,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 324070651}
-    m_SelectOnDown: {fileID: 324070651}
+    m_SelectOnDown: {fileID: 1793434303}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -7871,18 +7873,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1627925129}
         m_TargetAssemblyTypeName: GameUIHandler, Assembly-CSharp
         m_MethodName: OpenOptionsMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1627925129}
-        m_TargetAssemblyTypeName: GameUIHandler, Assembly-CSharp
-        m_MethodName: SetSelectedObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8139,7 +8129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 3
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 236487778}
     m_SelectOnDown: {fileID: 307074114}

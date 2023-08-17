@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (timePassed > weaponCooldown && isFighting && !GameManager.Instance.isPaused && context.started)
+        if (timePassed > weaponCooldown && isFighting && !GameManager.Instance.isPaused && context.performed)
         {
             PlayWeaponSound();
             enemyFought.healthPoints -= weaponDamage;
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if (interactable != null && context.started && !GameManager.Instance.isPaused)
+        if (interactable != null && context.performed && !GameManager.Instance.isPaused)
         {
             interactable.Interact();
         }
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
 
     public void UseHealthPotion(InputAction.CallbackContext context)
     {
-        if (context.started && GameManager.Instance.inventory.healthPotions >= 1)
+        if (context.performed && GameManager.Instance.inventory.healthPotions >= 1)
         {
             currentHealthPoints += 5;
             GameManager.Instance.inventory.healthPotions--;
@@ -134,14 +134,16 @@ public class PlayerController : MonoBehaviour
 
     public void Pause(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.performed)
         {
             if (!GameManager.Instance.isPaused)
             {
                 GameManager.Instance.gameUI.currentObject = null;
+                GameManager.Instance.optionsMenuUI.currentObject = null;
                 GameManager.Instance.gameUI.pauseMenu.SetActive(true);
                 GameManager.Instance.gameUI.menu.SetActive(true);
                 GameManager.Instance.gameUI.optionsMenu.SetActive(false);
+                GameManager.Instance.gameUI.controlsMenu.SetActive(false);
                 GameManager.Instance.isPaused = true;
                 Time.timeScale = 0f;
             }
