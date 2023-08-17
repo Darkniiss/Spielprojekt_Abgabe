@@ -37,6 +37,8 @@ public class MainMenuUIHandler : MonoBehaviour
         currentObject = null;
     }
 
+    
+
     public void ExitGame()
     {
 #if UNITY_EDITOR

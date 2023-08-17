@@ -18,6 +18,8 @@ public class GameUIHandler : MonoBehaviour
     public EventSystem eventSystem;
     public GameObject menu;
     public GameObject optionsMenu;
+    public GameObject controlsMenu;
+
     public GameObject pauseMenu;
 
     void Update()
@@ -42,6 +44,13 @@ public class GameUIHandler : MonoBehaviour
     {
         menu.SetActive(false);
         optionsMenu.SetActive(true);
+        currentObject = null;
+    }
+
+    public void OpenControlsMenu()
+    {
+        menu.SetActive(false);
+        controlsMenu.SetActive(true);
         currentObject = null;
     }
 

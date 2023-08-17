@@ -11,6 +11,7 @@ public class OptionsMenuUIHandler : MonoBehaviour
 {
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject controlsMenu;
     [SerializeField] private GameObject selectedObject;
     [SerializeField] private AudioMixer mainMixer;
     [SerializeField] private TMP_Dropdown resolutionDropdown;
@@ -39,7 +40,7 @@ public class OptionsMenuUIHandler : MonoBehaviour
         }
 
         resolutionDropdown.AddOptions(resOptions);
-        resolutionDropdown.value = curResolutionIndex;
+        //resolutionDropdown.value = curResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
 
@@ -58,8 +59,11 @@ public class OptionsMenuUIHandler : MonoBehaviour
     {
         menu.SetActive(true);
         optionsMenu.SetActive(false);
+        controlsMenu.SetActive(false );
         currentObject = null;
     }
+
+    
 
     public void SetVolume(float _volume)
     {
