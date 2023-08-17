@@ -69,5 +69,4 @@ public class GameUIHandler : MonoBehaviour
         Destroy(GameManager.Instance.inventory.gameObject);
     }
 
-    
 }

@@ -4777,7 +4777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8148749654742278719, guid: 8e690db38fe5bb046b6ccc9ee7e75899, type: 3}
       propertyPath: m_Name
-      value: DoorShop
+      value: Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e690db38fe5bb046b6ccc9ee7e75899, type: 3}
@@ -9294,7 +9294,7 @@ GameObject:
   - component: {fileID: 1148624710}
   - component: {fileID: 1148624713}
   m_Layer: 0
-  m_Name: HealFountain
+  m_Name: HealingFountain
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9653,7 +9653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8148749654742278719, guid: 8e690db38fe5bb046b6ccc9ee7e75899, type: 3}
       propertyPath: m_Name
-      value: DoorHome
+      value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 8148749654742278719, guid: 8e690db38fe5bb046b6ccc9ee7e75899, type: 3}
       propertyPath: m_TagString
@@ -9934,7 +9934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6335948072811943859, guid: 84bb6d8ef2b28d44ebad103cf47b925c, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6335948072811943859, guid: 84bb6d8ef2b28d44ebad103cf47b925c, type: 3}
       propertyPath: m_TagString

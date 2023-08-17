@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public InventoryManager inventory { get; private set; }
     public GameUIHandler gameUI { get; private set; }
     public OptionsMenuUIHandler optionsMenuUI { get; private set; }
+    public WorldUIHandler worldUI { get; private set; }
     public SoundManager soundManager { get; private set; }
     public int currentFloor;
     public int highestFloor;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
 
         player = Instantiate(playerPrefab, Vector2.zero, playerPrefab.transform.rotation).GetComponent<PlayerController>();
+        worldUI = player.GetComponentInChildren<WorldUIHandler>();
         inventory = GetComponentInChildren<InventoryManager>();
         gameUI = GetComponentInChildren<GameUIHandler>();
         optionsMenuUI = GetComponentInChildren<OptionsMenuUIHandler>();

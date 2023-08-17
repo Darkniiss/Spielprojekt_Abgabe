@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer playerSprite;
     public SpriteRenderer playerWeaponSprite;
     public IInteractable interactable;
+    public GameObject interactableGameObject;
     public IPickup pickup;
 
 
@@ -164,6 +165,9 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Interactable"))
         {
             interactable = collision.gameObject.GetComponent<IInteractable>();
+            interactableGameObject = collision.gameObject;
+            GameManager.Instance.worldUI.EnableInteractableText();
+
         }
         else if (collision.gameObject.CompareTag("Pickupable"))
         {
@@ -191,6 +195,8 @@ public class PlayerController : MonoBehaviour
             if (collision.gameObject.CompareTag("Interactable"))
             {
                 interactable = collision.gameObject.GetComponent<IInteractable>();
+                interactableGameObject = collision.gameObject;
+                GameManager.Instance.worldUI.EnableInteractableText();
             }
         }
     }
@@ -202,6 +208,8 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Interactable"))
         {
             interactable = null;
+            interactableGameObject = null;
+            GameManager.Instance.worldUI.DisableInteractableText();
         }
         if (collision.gameObject.layer == 7)
         {

@@ -10,11 +10,12 @@ public class SceneLoader : MonoBehaviour, IInteractable
     
     public void Interact()
     {
-        if (gameObject.layer == 13)
+        if (gameObject.layer == 13 || gameObject.layer == 9)
         {
         GameManager.Instance.player.transform.position = scenePosition;
         SceneManager.LoadScene(sceneIndex);
             GameManager.Instance.player.interactable = null;
+            GameManager.Instance.worldUI.DisableInteractableText();
 
         }
         else
