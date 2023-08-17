@@ -55,7 +55,8 @@ public class GameManager : MonoBehaviour
             player.currentHealthPoints = player.maxHealthPoints;
             currentFloor = 0;
             player.transform.position = new Vector2(2, 0);
-            GameManager.Instance.inventory.coins /= 2;
+            GameManager.Instance.inventory.coins = Mathf.Round(GameManager.Instance.inventory.coins / 2);
+
         }
     }
 }

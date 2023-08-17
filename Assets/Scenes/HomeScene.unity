@@ -2499,7 +2499,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -300, y: -100}
+  m_AnchoredPosition: {x: -300, y: -50}
   m_SizeDelta: {x: 750, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &491357608
@@ -4833,6 +4833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 3818187382475611518, guid: 3907484593001284f99b596f364fa6b4, type: 3}
   currentFloor: 0
+  highestFloor: 0
   isPaused: 0
   openedChest: 0
 --- !u!4 &1070871064
@@ -6501,6 +6502,7 @@ MonoBehaviour:
   coinText: {fileID: 45251261}
   healthPotionText: {fileID: 1993949971}
   selectedObject: {fileID: 1931234805}
+  floorText: {fileID: 491357608}
   currentObject: {fileID: 0}
   eventSystem: {fileID: 374750819}
   menu: {fileID: 1078564539}
