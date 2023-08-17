@@ -7,8 +7,4 @@ public class InventoryManager : MonoBehaviour
 {
     public float coins;
     public float healthPotions;
-
-
-
-
 }

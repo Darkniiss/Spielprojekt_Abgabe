@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
+
     public static GameManager Instance { get; private set; }
     public PlayerController player { get; private set; }
     public InventoryManager inventory { get; private set; }
@@ -32,7 +33,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
         player = Instantiate(playerPrefab, Vector2.zero, playerPrefab.transform.rotation).GetComponent<PlayerController>();
         worldUI = player.GetComponentInChildren<WorldUIHandler>();
         inventory = GetComponentInChildren<InventoryManager>();
@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4))
         {
             player.healthBar.SetActive(true);
@@ -59,8 +58,7 @@ public class GameManager : MonoBehaviour
             player.currentHealthPoints = player.maxHealthPoints;
             currentFloor = 0;
             player.transform.position = new Vector2(2, 0);
-            GameManager.Instance.inventory.coins = Mathf.Round(GameManager.Instance.inventory.coins / 2);
-
+            inventory.coins = Mathf.Round(inventory.coins / 2);
         }
     }
 }

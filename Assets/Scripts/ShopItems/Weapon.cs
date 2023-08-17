@@ -14,15 +14,12 @@ public class Weapon : MonoBehaviour, IInteractable
         {
             if (GameManager.Instance.player.playerWeaponSprite.sprite != gameObject.GetComponent<SpriteRenderer>().sprite)
             {
-
                 GameManager.Instance.player.weaponDamage = weaponDamage;
                 GameManager.Instance.player.weaponCooldown = weaponCooldown;
                 GameManager.Instance.player.playerWeaponSprite.sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
                 GameManager.Instance.player.currentWeapon = weaponName;
                 GameManager.Instance.inventory.coins -= 2;
             }
-
-
         }
     }
 }

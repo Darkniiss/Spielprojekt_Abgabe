@@ -6,13 +6,14 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemyPrefabs = new List<GameObject>();
     [SerializeField] private GameObject ladderPrefab;
+
     private bool ladderSpawned;
+
     void Start()
     {
         GameManager.Instance.currentFloor++;
         if (GameManager.Instance.highestFloor < GameManager.Instance.currentFloor)
         {
-
             GameManager.Instance.highestFloor++;
         }
         SpawnEnemies();
@@ -28,14 +29,12 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnemies()
     {
-
         for (int i = 0; i < GameManager.Instance.currentFloor; i++)
         {
             int rndIndex = Random.Range(0, enemyPrefabs.Count);
             Vector2 rndPos = new Vector2(Random.Range(-7.5f, 7.5f), Random.Range(-3.5f, 2.5f));
             Instantiate(enemyPrefabs[rndIndex], rndPos, enemyPrefabs[rndIndex].transform.rotation);
         }
-
     }
 
     private void SpawnLadder()

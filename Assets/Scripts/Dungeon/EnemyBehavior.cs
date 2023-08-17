@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class EnemyBehavior : MonoBehaviour
 {
-    public float healthPoints;
     [SerializeField] protected float chaseSpeed;
     [SerializeField] protected float idleSpeed;
     [SerializeField] protected float weaponDamage;
@@ -14,11 +13,6 @@ public abstract class EnemyBehavior : MonoBehaviour
     [SerializeField] protected GameObject enemyWeapon;
     [SerializeField] protected GameObject coinPrefab;
     [SerializeField] protected List<AudioClip> weaponSounds;
-    protected Rigidbody2D enemyRb;
-    protected AudioSource enemyAudio;
-    protected SpriteRenderer enemySprite;
-    protected SpriteRenderer enemyWeaponSprite;
-
 
     protected bool followsPlayer;
     protected bool randomChosen;
@@ -26,10 +20,14 @@ public abstract class EnemyBehavior : MonoBehaviour
     protected float timePassed;
     protected float rndX;
     protected float rndY;
-    protected Vector2 moveVec;
     protected float moveVecLength;
+    protected Vector2 moveVec;
+    protected Rigidbody2D enemyRb;
+    protected AudioSource enemyAudio;
+    protected SpriteRenderer enemySprite;
+    protected SpriteRenderer enemyWeaponSprite;
 
-
+    public float healthPoints;
 
     private void Awake()
     {
@@ -45,36 +43,29 @@ public abstract class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-       
+        moveVec = GameManager.Instance.player.transform.position - transform.position;
+        moveVecLength = moveVec.magnitude;
 
-        
+        timePassed += Time.deltaTime;
 
-            moveVec = GameManager.Instance.player.transform.position - transform.position;
-            moveVecLength = moveVec.magnitude;
+        RangeDetection();
 
-            timePassed += Time.deltaTime;
+        FlipSprite();
 
-            RangeDetection();
+        if (!followsPlayer && !isFighting)
+        {
+            IdleMovement();
+        }
+        else if (isFighting)
+        {
+            Attack();
+        }
 
-
-            FlipSprite();
-
-            if (!followsPlayer && !isFighting)
-            {
-                IdleMovement();
-            }
-            else if (isFighting)
-            {
-                Attack();
-            }
-
-            if (healthPoints <= 0)
-            {
-                Instantiate(coinPrefab, transform.position, transform.rotation);
-                Destroy(gameObject);
-            }
-        
-
+        if (healthPoints <= 0)
+        {
+            Instantiate(coinPrefab, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
     }
 
     public void FlipSprite()
@@ -115,7 +106,6 @@ public abstract class EnemyBehavior : MonoBehaviour
         {
             enemyRb.velocity = new Vector2(rndX, rndY) * idleSpeed * Time.deltaTime;
         }
-
     }
 
     private void RangeDetection()

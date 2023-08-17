@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class HealthSystemPlayer : MonoBehaviour
 {
-    private PlayerController player;
     [SerializeField] private Slider healthSlider;
+
+    private PlayerController player;
 
     void Start()
     {

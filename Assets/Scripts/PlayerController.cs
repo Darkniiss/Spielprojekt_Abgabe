@@ -6,40 +6,32 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject playerWeapon;
+    [SerializeField] private List<AudioClip> weaponSounds;
+
+    private float timePassed;
+    private bool isFighting;
+    private AudioSource playerAudio;
+    private Rigidbody2D playerRb;
+    private EnemyBehavior enemyFought;
+    private Vector2 moveVec;
+
     public float moveSpeed;
     public float maxHealthPoints;
     public float currentHealthPoints;
     public float weaponDamage;
     public float weaponCooldown;
-    [SerializeField] private GameObject playerWeapon;
-    private AudioSource playerAudio;
-    [SerializeField] private List<AudioClip> weaponSounds;
-    public GameObject healthBar;
-    private Rigidbody2D playerRb;
-
     public string currentClass;
     public string currentWeapon;
-
-    private EnemyBehavior enemyFought;
-
     public SpriteRenderer playerSprite;
     public SpriteRenderer playerWeaponSprite;
-    public IInteractable interactable;
+    public GameObject healthBar;
     public GameObject interactableGameObject;
+    public IInteractable interactable;
     public IPickup pickup;
-
-
-
-    private Vector2 moveVec;
-    private float timePassed;
-
-
-    private bool isFighting;
-
 
     private void Awake()
     {
-
         playerRb = GetComponent<Rigidbody2D>();
         playerAudio = GetComponent<AudioSource>();
         playerSprite = GetComponent<SpriteRenderer>();
@@ -56,12 +48,9 @@ public class PlayerController : MonoBehaviour
     {
         if (!GameManager.Instance.isPaused)
         {
-
             timePassed += Time.deltaTime;
 
             playerRb.velocity = (moveVec * moveSpeed * Time.deltaTime);
-
-
 
             FlipSprite();
         }
@@ -69,8 +58,6 @@ public class PlayerController : MonoBehaviour
 
     public void FlipSprite()
     {
-
-
         if (moveVec.x > 0)
         {
             playerSprite.flipX = false;
@@ -91,7 +78,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!GameManager.Instance.isPaused)
         {
-
             moveVec = context.ReadValue<Vector2>();
         }
     }
@@ -160,22 +146,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-
         if (collision.gameObject.CompareTag("Interactable"))
         {
             interactable = collision.gameObject.GetComponent<IInteractable>();
             interactableGameObject = collision.gameObject;
             GameManager.Instance.worldUI.EnableInteractableText();
-
         }
         else if (collision.gameObject.CompareTag("Pickupable"))
         {
             pickup = collision.gameObject.GetComponent<IPickup>();
             pickup.PickupItem();
         }
-
-
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -186,7 +167,6 @@ public class PlayerController : MonoBehaviour
             {
                 enemyFought = collision.gameObject.GetComponent<EnemyBehavior>();
                 isFighting = true;
-
             }
         }
 
@@ -201,8 +181,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Interactable"))
@@ -216,7 +194,6 @@ public class PlayerController : MonoBehaviour
             enemyFought = null;
             isFighting = false;
         }
-
     }
 
     private void PlayWeaponSound()

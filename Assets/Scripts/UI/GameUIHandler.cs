@@ -11,15 +11,14 @@ public class GameUIHandler : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private TextMeshProUGUI healthPotionText;
-    [SerializeField] private GameObject selectedObject;
     [SerializeField] private TextMeshProUGUI floorText;
+    [SerializeField] private GameObject selectedObject;
     [SerializeField] public GameObject currentObject;
 
     public EventSystem eventSystem;
     public GameObject menu;
     public GameObject optionsMenu;
     public GameObject controlsMenu;
-
     public GameObject pauseMenu;
 
     void Update()
@@ -38,11 +37,8 @@ public class GameUIHandler : MonoBehaviour
 
         if (currentObject == null && Gamepad.current != null && menu.gameObject.activeSelf)
         {
-            
-                eventSystem.SetSelectedGameObject(selectedObject);
+            eventSystem.SetSelectedGameObject(selectedObject);
             currentObject = eventSystem.currentSelectedGameObject;
-            
-            
         }
     }
 
@@ -68,5 +64,4 @@ public class GameUIHandler : MonoBehaviour
         Destroy(GameManager.Instance.gameUI.gameObject);
         Destroy(GameManager.Instance.inventory.gameObject);
     }
-
 }

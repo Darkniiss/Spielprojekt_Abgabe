@@ -12,15 +12,13 @@ public class MainMenuUIHandler : MonoBehaviour
     [SerializeField] private GameObject controlsMenu;
     [SerializeField] private GameObject selectedObject;
     [SerializeField] private EventSystem eventSystem;
+
     private GameObject currentObject;
-
-
 
     private void Update()
     {
         if (currentObject == null && Gamepad.current != null && menu.gameObject.activeSelf)
         {
-
             eventSystem.SetSelectedGameObject(selectedObject);
             currentObject = eventSystem.currentSelectedGameObject;
         }
@@ -53,5 +51,4 @@ public class MainMenuUIHandler : MonoBehaviour
 #endif
         Application.Quit();
     }
-
 }

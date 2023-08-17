@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class HealthSystemEnemy : MonoBehaviour
 {
-    private EnemyBehavior enemy;
     [SerializeField] private Slider healthSlider;
+
+    private EnemyBehavior enemy;
 
     void Start()
     {

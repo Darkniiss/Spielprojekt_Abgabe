@@ -5,9 +5,10 @@ using UnityEngine;
 public class ChestBehavior : MonoBehaviour, IInteractable
 {
     [SerializeField] private Sprite itemSprite;
+    [SerializeField] private Sprite openedChestSprite;
     [SerializeField] private float weaponDamage;
     [SerializeField] private float weaponCooldown;
-    [SerializeField] private Sprite openedChestSprite;
+
     private SpriteRenderer chestSprite;
 
     private void Start()
@@ -20,9 +21,9 @@ public class ChestBehavior : MonoBehaviour, IInteractable
         if (!GameManager.Instance.openedChest)
         {
 
-        GameManager.Instance.player.weaponCooldown = weaponCooldown;
-        GameManager.Instance.player.weaponDamage = weaponDamage;
-        GameManager.Instance.player.playerWeaponSprite.sprite = itemSprite;
+            GameManager.Instance.player.weaponCooldown = weaponCooldown;
+            GameManager.Instance.player.weaponDamage = weaponDamage;
+            GameManager.Instance.player.playerWeaponSprite.sprite = itemSprite;
             GameManager.Instance.openedChest = true;
             chestSprite.sprite = openedChestSprite;
         }

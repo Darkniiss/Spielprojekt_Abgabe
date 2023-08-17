@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    public interface IInteractable
-    {
-        public void Interact();
-    }
+public interface IInteractable
+{
+    public void Interact();
+}
 
