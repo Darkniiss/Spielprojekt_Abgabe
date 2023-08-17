@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5486321064819371065}
-  - component: {fileID: 729135648797318599}
+  - component: {fileID: 8529821583011629001}
   - component: {fileID: 5486321064819371064}
   - component: {fileID: 1988125387202364871}
   m_Layer: 10
@@ -119,7 +119,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &729135648797318599
+--- !u!114 &8529821583011629001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,13 +128,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5486321064819370951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 766dba6546f5e6b4585d162d8b1e43cc, type: 3}
+  m_Script: {fileID: 11500000, guid: bbf1ebac21976d943943c37e9c5b84c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 0
-  weaponCooldown: 0
   classMoveSpeed: 150
   classHealthpoints: 15
+  className: Berserker
 --- !u!212 &5486321064819371064
 SpriteRenderer:
   m_ObjectHideFlags: 0

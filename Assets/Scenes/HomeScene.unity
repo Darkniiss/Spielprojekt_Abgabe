@@ -4828,7 +4828,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1078564540
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6362,6 +6362,7 @@ MonoBehaviour:
   coinText: {fileID: 45251261}
   healthPotionText: {fileID: 1993949971}
   selectedObject: {fileID: 1931234805}
+  currentObject: {fileID: 0}
   eventSystem: {fileID: 374750819}
   menu: {fileID: 1078564539}
   optionsMenu: {fileID: 563350078}
@@ -7749,14 +7750,14 @@ PrefabInstance:
     - target: {fileID: 6798027056949643821, guid: 5b30105d0d93347499b36adcad3bff70, type: 3}
       propertyPath: itemSprite
       value: 
-      objectReference: {fileID: -665246101, guid: 6280798eea884a34dab28d10f8e55238, type: 3}
+      objectReference: {fileID: -1594316910, guid: 6280798eea884a34dab28d10f8e55238, type: 3}
     - target: {fileID: 6798027056949643821, guid: 5b30105d0d93347499b36adcad3bff70, type: 3}
       propertyPath: weaponDamage
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6798027056949643821, guid: 5b30105d0d93347499b36adcad3bff70, type: 3}
       propertyPath: weaponCooldown
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6798027056949643821, guid: 5b30105d0d93347499b36adcad3bff70, type: 3}
       propertyPath: openedChestSprite

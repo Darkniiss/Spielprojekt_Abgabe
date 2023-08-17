@@ -126,7 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5405537559693364979}
-  - component: {fileID: 952908485041880845}
+  - component: {fileID: 574684812299973588}
   - component: {fileID: 5405537559693364978}
   - component: {fileID: 2067220072549656333}
   m_Layer: 9
@@ -152,7 +152,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &952908485041880845
+--- !u!114 &574684812299973588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,13 +161,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5405537559693363469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 766dba6546f5e6b4585d162d8b1e43cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 318ae25c34b40c74da0c948d3f45e471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 2
+  weaponDamage: 4
   weaponCooldown: 2
-  classMoveSpeed: 0
-  classHealthpoints: 0
+  weaponName: DoubleAxe
 --- !u!212 &5405537559693364978
 SpriteRenderer:
   m_ObjectHideFlags: 0

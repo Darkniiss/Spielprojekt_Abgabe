@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     public GameObject healthBar;
     private Rigidbody2D playerRb;
 
+    public string currentClass;
+    public string currentWeapon;
+
     private EnemyBehavior enemyFought;
 
     public SpriteRenderer playerSprite;
@@ -135,6 +138,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!GameManager.Instance.isPaused)
             {
+                GameManager.Instance.gameUI.currentObject = null;
                 GameManager.Instance.gameUI.pauseMenu.SetActive(true);
                 GameManager.Instance.gameUI.menu.SetActive(true);
                 GameManager.Instance.gameUI.optionsMenu.SetActive(false);
@@ -150,13 +154,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 7)
-        {
-            enemyFought = collision.gameObject.GetComponent<EnemyBehavior>();
-            isFighting = true;
 
-        }
-        else if (collision.gameObject.CompareTag("Interactable"))
+
+        if (collision.gameObject.CompareTag("Interactable"))
         {
             interactable = collision.gameObject.GetComponent<IInteractable>();
         }
@@ -171,6 +171,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (enemyFought == null)
+        {
+            if (collision.gameObject.layer == 7)
+            {
+                enemyFought = collision.gameObject.GetComponent<EnemyBehavior>();
+                isFighting = true;
+
+            }
+        }
+
         if (interactable == null)
         {
             if (collision.gameObject.CompareTag("Interactable"))
@@ -190,7 +200,7 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.layer == 7)
         {
-
+            enemyFought = null;
             isFighting = false;
         }
 

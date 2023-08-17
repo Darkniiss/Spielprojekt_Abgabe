@@ -17,13 +17,6 @@ public class PickupBehavior : MonoBehaviour, IPickup
             Destroy(gameObject);
             GameManager.Instance.inventory.coins++;
         }
-        //else if(gameObject.name == "HealthPotion")
-        //{
-        //    InventoryManager.Instance.healthPotions++;
-        //}
-
-
-
-
+        
     }
 }

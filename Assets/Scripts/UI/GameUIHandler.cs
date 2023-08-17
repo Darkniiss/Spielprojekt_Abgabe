@@ -12,17 +12,12 @@ public class GameUIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private TextMeshProUGUI healthPotionText;
     [SerializeField] private GameObject selectedObject;
-    private GameObject currentObject;
+    [SerializeField] public GameObject currentObject;
 
     public EventSystem eventSystem;
     public GameObject menu;
     public GameObject optionsMenu;
     public GameObject pauseMenu;
-
-    private void Start()
-    {
-        currentObject = eventSystem.currentSelectedGameObject;
-    }
 
     void Update()
     {

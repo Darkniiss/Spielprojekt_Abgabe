@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 174834209777929082}
+  - component: {fileID: 371195851750661260}
   - component: {fileID: 2983505719764293764}
   - component: {fileID: 8716025880333394596}
-  - component: {fileID: 5948365167645707238}
   m_Layer: 12
   m_Name: HealthPotion
   m_TagString: Interactable
@@ -35,6 +35,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &371195851750661260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2226443637125136290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd8359dfbfde4942b6f0aa6738927d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &2983505719764293764
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -113,22 +125,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5948365167645707238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2226443637125136290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 766dba6546f5e6b4585d162d8b1e43cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponDamage: 0
-  weaponCooldown: 0
-  classMoveSpeed: 0
-  classHealthpoints: 0
 --- !u!1 &7257552911819671697
 GameObject:
   m_ObjectHideFlags: 0

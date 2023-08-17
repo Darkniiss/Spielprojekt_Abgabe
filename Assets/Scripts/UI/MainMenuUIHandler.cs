@@ -13,11 +13,7 @@ public class MainMenuUIHandler : MonoBehaviour
     [SerializeField] private EventSystem eventSystem;
     private GameObject currentObject;
 
-    private void Start()
-    {
 
-        currentObject = eventSystem.currentSelectedGameObject;
-    }
 
     private void Update()
     {

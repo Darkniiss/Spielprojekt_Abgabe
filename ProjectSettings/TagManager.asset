@@ -18,10 +18,10 @@ TagManager:
   - Player
   - Enemy
   - Walls
-  - Weapon
-  - Class
+  - 
+  - 
   - Coin
-  - HealthPotion
+  - 
   - Ladder
   - 
   - 
