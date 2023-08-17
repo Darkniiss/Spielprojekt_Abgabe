@@ -28,9 +28,9 @@ public class OptionsMenuUIHandler : MonoBehaviour
 
     private static bool resolutionSet;
     public static int resolutionIndex;
-    public static int qualityIndex;
-    public static bool isFullscreen;
-    public static float volumeValue;
+    public static int qualityIndex = 5;
+    public static bool isFullscreen = true;
+    public static float volumeValue = 1f;
 
     private void Start()
     {
