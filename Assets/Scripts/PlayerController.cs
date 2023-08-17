@@ -143,11 +143,13 @@ public class PlayerController : MonoBehaviour
                 GameManager.Instance.gameUI.menu.SetActive(true);
                 GameManager.Instance.gameUI.optionsMenu.SetActive(false);
                 GameManager.Instance.isPaused = true;
+                Time.timeScale = 0f;
             }
             else if (GameManager.Instance.isPaused)
             {
                 GameManager.Instance.gameUI.pauseMenu.SetActive(false);
                 GameManager.Instance.isPaused = false;
+                Time.timeScale = 1f;
             }
         }
     }

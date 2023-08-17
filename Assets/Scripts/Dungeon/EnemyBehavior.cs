@@ -45,8 +45,9 @@ public abstract class EnemyBehavior : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.isPaused)
-        {
+       
+
+        
 
             moveVec = GameManager.Instance.player.transform.position - transform.position;
             moveVecLength = moveVec.magnitude;
@@ -72,7 +73,7 @@ public abstract class EnemyBehavior : MonoBehaviour
                 Instantiate(coinPrefab, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
-        }
+        
 
     }
 
