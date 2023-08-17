@@ -138,6 +138,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!GameManager.Instance.isPaused)
             {
+                GameManager.Instance.optionsMenuUI.resolutionDropdown.value = OptionsMenuUIHandler.resolutionIndex;
                 GameManager.Instance.gameUI.currentObject = null;
                 GameManager.Instance.optionsMenuUI.currentObject = null;
                 GameManager.Instance.gameUI.pauseMenu.SetActive(true);

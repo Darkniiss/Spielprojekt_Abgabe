@@ -15,16 +15,25 @@ public class OptionsMenuUIHandler : MonoBehaviour
     [SerializeField] private GameObject selectedObjectOptions;
     [SerializeField] private GameObject selectedObjectControls;
     [SerializeField] private AudioMixer mainMixer;
-    [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private EventSystem eventSystem;
+    public TMP_Dropdown resolutionDropdown;
+    public TMP_Dropdown qualityDropdown;
+    public Toggle fullscreenToggle;
+    public Slider volumeSlider;
     public GameObject currentObject;
 
-    private static bool resolutionSet;
+    private static  bool resolutionSet;
+    public static  int resolutionIndex;
+    public static int qualityIndex;
+    public static bool isFullscreen;
+    public static float volumeValue;
 
     private Resolution[] resolutions;
+    private List<Resolution> compatibleResolutions = new List<Resolution>();
 
     private void Start()
     {
+
         resolutions = Screen.resolutions;
 
         List<string> resOptions = new List<string>();
@@ -33,8 +42,15 @@ public class OptionsMenuUIHandler : MonoBehaviour
 
         for (int i = 0; i < resolutions.Length; i++)
         {
+
             string resOption = resolutions[i].width + "x" + resolutions[i].height;
-            resOptions.Add(resOption);
+            if (resOption == "640x360" || resOption == "854x480" || resOption == "960x540" || resOption == "1280x720" ||
+                resOption == "1366x768" || resOption == "1600x900" || resOption == "1920x1080")
+            {
+                compatibleResolutions.Add(resolutions[i]);
+                resOptions.Add(resOption); ;
+            }
+            
 
             if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
             {
@@ -47,6 +63,7 @@ public class OptionsMenuUIHandler : MonoBehaviour
         {
 
             resolutionDropdown.value = curResolutionIndex;
+            resolutionIndex = resolutionDropdown.value;
             resolutionSet = true;
         }
         resolutionDropdown.RefreshShownValue();
@@ -54,6 +71,11 @@ public class OptionsMenuUIHandler : MonoBehaviour
 
     private void Update()
     {
+        resolutionDropdown.value = resolutionIndex;
+        qualityDropdown.value = qualityIndex;
+        fullscreenToggle.isOn = isFullscreen;
+        volumeSlider.value = volumeValue;
+
         if (currentObject == null && Gamepad.current != null && optionsMenu.gameObject.activeSelf)
         {
 
@@ -61,7 +83,7 @@ public class OptionsMenuUIHandler : MonoBehaviour
             currentObject = eventSystem.currentSelectedGameObject;
 
         }
-        else if(currentObject == null && Gamepad.current != null && controlsMenu.gameObject.activeSelf)
+        else if (currentObject == null && Gamepad.current != null && controlsMenu.gameObject.activeSelf)
         {
             eventSystem.SetSelectedGameObject(selectedObjectControls);
             currentObject = eventSystem.currentSelectedGameObject;
@@ -81,21 +103,25 @@ public class OptionsMenuUIHandler : MonoBehaviour
     public void SetVolume(float _volume)
     {
         mainMixer.SetFloat("volume", Mathf.Log10(_volume) * 20);
+        volumeValue = _volume;
     }
 
     public void SetQuality(int _quality)
     {
         QualitySettings.SetQualityLevel(_quality);
+        qualityIndex = _quality;
     }
 
     public void SetFullscreen(bool _isFullscreen)
     {
         Screen.fullScreen = _isFullscreen;
+        isFullscreen = _isFullscreen;
     }
 
     public void SetResolution(int _resolution)
     {
-        Screen.SetResolution(resolutions[_resolution].width, resolutions[_resolution].height, Screen.fullScreen);
+        Screen.SetResolution(compatibleResolutions[_resolution].width, compatibleResolutions[_resolution].height, Screen.fullScreen);
+        resolutionIndex = _resolution;
     }
 
 

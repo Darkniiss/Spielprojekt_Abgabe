@@ -3219,8 +3219,11 @@ MonoBehaviour:
   selectedObjectOptions: {fileID: 288787794}
   selectedObjectControls: {fileID: 1283566319}
   mainMixer: {fileID: 24100000, guid: db1b6f5144a86d94687b9183f67c3638, type: 2}
-  resolutionDropdown: {fileID: 276175710}
   eventSystem: {fileID: 2113568004}
+  resolutionDropdown: {fileID: 276175710}
+  qualityDropdown: {fileID: 288787796}
+  fullscreenToggle: {fileID: 138809673}
+  volumeSlider: {fileID: 126284382}
   currentObject: {fileID: 0}
 --- !u!1 &848665619
 GameObject:

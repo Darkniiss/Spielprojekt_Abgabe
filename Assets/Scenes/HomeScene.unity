@@ -7053,8 +7053,11 @@ MonoBehaviour:
   selectedObjectOptions: {fileID: 307074111}
   selectedObjectControls: {fileID: 1960154767}
   mainMixer: {fileID: 24100000, guid: db1b6f5144a86d94687b9183f67c3638, type: 2}
-  resolutionDropdown: {fileID: 974770382}
   eventSystem: {fileID: 374750819}
+  resolutionDropdown: {fileID: 974770382}
+  qualityDropdown: {fileID: 307074114}
+  fullscreenToggle: {fileID: 823835986}
+  volumeSlider: {fileID: 236487778}
   currentObject: {fileID: 0}
 --- !u!114 &1627925129
 MonoBehaviour:

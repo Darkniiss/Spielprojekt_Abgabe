@@ -30,6 +30,12 @@ public class GameUIHandler : MonoBehaviour
 
         floorText.text = $"Current Floor: {GameManager.Instance.currentFloor}\nHighest Floor: {GameManager.Instance.highestFloor}";
 
+        GameManager.Instance.optionsMenuUI.resolutionDropdown.value = OptionsMenuUIHandler.resolutionIndex;
+        GameManager.Instance.optionsMenuUI.resolutionDropdown.value = OptionsMenuUIHandler.resolutionIndex;
+        GameManager.Instance.optionsMenuUI.qualityDropdown.value = OptionsMenuUIHandler.qualityIndex;
+        GameManager.Instance.optionsMenuUI.fullscreenToggle.isOn = OptionsMenuUIHandler.isFullscreen;
+        GameManager.Instance.optionsMenuUI.volumeSlider.value = OptionsMenuUIHandler.volumeValue;
+
         if (currentObject == null && Gamepad.current != null && menu.gameObject.activeSelf)
         {
             
