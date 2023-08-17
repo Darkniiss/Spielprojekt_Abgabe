@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameUIHandler gameUI { get; private set; }
     public SoundManager soundManager { get; private set; }
     public int currentFloor;
+    public int highestFloor;
     public bool isPaused;
     public bool openedChest;
 

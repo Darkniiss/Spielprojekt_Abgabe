@@ -12,6 +12,7 @@ public class GameUIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private TextMeshProUGUI healthPotionText;
     [SerializeField] private GameObject selectedObject;
+    [SerializeField] private TextMeshProUGUI floorText;
     [SerializeField] public GameObject currentObject;
 
     public EventSystem eventSystem;
@@ -24,6 +25,8 @@ public class GameUIHandler : MonoBehaviour
         coinText.text = GameManager.Instance.inventory.coins.ToString();
 
         healthPotionText.text = GameManager.Instance.inventory.healthPotions.ToString();
+
+        floorText.text = $"Current Floor: {GameManager.Instance.currentFloor}\nHighest Floor: {GameManager.Instance.highestFloor}";
 
         if (currentObject == null && Gamepad.current != null && menu.gameObject.activeSelf)
         {

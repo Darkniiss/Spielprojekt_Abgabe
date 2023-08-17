@@ -10,6 +10,11 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         GameManager.Instance.currentFloor++;
+        if (GameManager.Instance.highestFloor < GameManager.Instance.currentFloor)
+        {
+
+            GameManager.Instance.highestFloor++;
+        }
         SpawnEnemies();
     }
 
