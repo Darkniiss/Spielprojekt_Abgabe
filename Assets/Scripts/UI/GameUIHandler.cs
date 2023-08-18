@@ -31,7 +31,7 @@ public class GameUIHandler : MonoBehaviour
         floorText.text = $"Current Floor: {GameManager.Instance.currentFloor}\nHighest Floor: {GameManager.Instance.highestFloor}";
 
         playerStatsText.text = $"Weapon Damage: {GameManager.Instance.player.weaponDamage}\nWeapon Cooldown: {GameManager.Instance.player.weaponCooldown}\n" +
-                               $"Class Health: {GameManager.Instance.player.maxHealthPoints}\nClass Speed: {GameManager.Instance.player.moveSpeed}";
+                               $"Player Health: {GameManager.Instance.player.maxHealthPoints}\nPlayer Speed: {GameManager.Instance.player.moveSpeed}";
 
         GameManager.Instance.optionsMenuUI.resolutionDropdown.value = OptionsMenuUIHandler.resolutionIndex;
         GameManager.Instance.optionsMenuUI.resolutionDropdown.value = OptionsMenuUIHandler.resolutionIndex;
