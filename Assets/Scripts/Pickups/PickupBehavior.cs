@@ -13,7 +13,11 @@ public class PickupBehavior : MonoBehaviour, IPickup
         if (gameObject.layer == 11)
         {
             Destroy(gameObject);
-            GameManager.Instance.inventory.coins++;
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.inventory.coins++;
     }
 }

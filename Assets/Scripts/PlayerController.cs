@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public float currentHealthPoints;
     public float weaponDamage;
     public float weaponCooldown;
+    public double fleeDuration;
     public string currentClass;
     public string currentWeapon;
     public SpriteRenderer playerSprite;
@@ -49,11 +50,13 @@ public class PlayerController : MonoBehaviour
         if (!GameManager.Instance.isPaused)
         {
             timePassed += Time.deltaTime;
+            fleeDuration += Time.deltaTime;
 
             playerRb.velocity = (moveVec * moveSpeed * Time.deltaTime);
 
             FlipSprite();
         }
+
     }
 
     public void FlipSprite()
@@ -102,11 +105,29 @@ public class PlayerController : MonoBehaviour
 
     public void Flee(InputAction.CallbackContext context)
     {
-        if (context.duration > 2 && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4) && !GameManager.Instance.isPaused)
+        if (!GameManager.Instance.isPaused)
         {
-            SceneManager.LoadScene(2);
-            GameManager.Instance.currentFloor = 0;
-            transform.position = new Vector2(5f, -5.5f);
+
+            fleeDuration = 0;
+
+            if (context.canceled && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4))
+            {
+                GameManager.Instance.worldUI.DisableFleeBar();
+            }
+            else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4))
+            {
+
+                GameManager.Instance.worldUI.EnableFleeBar();
+            }
+
+
+            if (context.duration > 2 && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4))
+            {
+                SceneManager.LoadScene(2);
+                GameManager.Instance.worldUI.DisableFleeBar();
+                GameManager.Instance.currentFloor = 0;
+                transform.position = new Vector2(5f, -5.5f);
+            }
         }
     }
 
