@@ -120,7 +120,6 @@ public class PlayerController : MonoBehaviour
                 GameManager.Instance.worldUI.EnableFleeBar();
             }
 
-
             if (context.duration > 2 && SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4))
             {
                 SceneManager.LoadScene(2);

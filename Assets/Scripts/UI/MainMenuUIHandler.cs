@@ -26,7 +26,7 @@ public class MainMenuUIHandler : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("HomeScene");
+        SceneManager.LoadScene(1);
     }
 
     public void OpenOptionsMenu()

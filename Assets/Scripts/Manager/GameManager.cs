@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this);
 
-
         highestFloor = PlayerPrefs.GetInt("Highscore");
     }
 

@@ -12,6 +12,7 @@ public class GameUIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinText;
     [SerializeField] private TextMeshProUGUI healthPotionText;
     [SerializeField] private TextMeshProUGUI floorText;
+    [SerializeField] private TextMeshProUGUI playerStatsText;
     [SerializeField] private GameObject selectedObject;
     [SerializeField] public GameObject currentObject;
 
@@ -28,6 +29,9 @@ public class GameUIHandler : MonoBehaviour
         healthPotionText.text = GameManager.Instance.inventory.healthPotions.ToString();
 
         floorText.text = $"Current Floor: {GameManager.Instance.currentFloor}\nHighest Floor: {GameManager.Instance.highestFloor}";
+
+        playerStatsText.text = $"Weapon Damage: {GameManager.Instance.player.weaponDamage}\nWeapon Cooldown: {GameManager.Instance.player.weaponCooldown}\n" +
+                               $"Class Health: {GameManager.Instance.player.maxHealthPoints}\nClass Speed: {GameManager.Instance.player.moveSpeed}";
 
         GameManager.Instance.optionsMenuUI.resolutionDropdown.value = OptionsMenuUIHandler.resolutionIndex;
         GameManager.Instance.optionsMenuUI.resolutionDropdown.value = OptionsMenuUIHandler.resolutionIndex;
@@ -58,7 +62,7 @@ public class GameUIHandler : MonoBehaviour
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene("MenuScene");
+        SceneManager.LoadScene(0);
         Destroy(GameManager.Instance.player.gameObject);
         Destroy(GameManager.Instance.gameObject);
         Destroy(GameManager.Instance.gameUI.gameObject);
